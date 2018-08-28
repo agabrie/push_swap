@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:07:09 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/25 16:32:30 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/28 17:20:19 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void		rb(t_stackdata *b)
 
 	head = b->lst;
 	temp = b->lst;
-	if(b->lst && b->lst->next)
+	if (b->lst && b->lst->next)
 		b->lst = b->lst->next;
 	else
 		return ;
-	if(temp->value > MIN)
+	if (temp->value > MIN)
 	{
-		while(head->next)
+		while (head->next)
 			head = head->next;
 		head->next = temp;
 		temp->next = NULL;
@@ -63,6 +63,7 @@ void		rrb(t_stackdata *b)
 {
 	t_stack *head;
 	t_stack *temp;
+
 	if (b->lst && b->lst->next)
 	{
 		head = b->lst;

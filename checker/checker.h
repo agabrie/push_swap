@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 15:15:59 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/28 17:53:38 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # define MAX 2147483647
 # define VAR(NAME) #NAME
 # define DEBUGIT(a,b,d,l) if(d){col_endl_fd(FYEL,l,2);printbothstacks(a,b);}
-# define MESSAGE(string, colour) (col_endl_fd(colour, string, 1),exit(1))
-# define ERR() (MESSAGE("Error", FRED))
+# define FS() (freestack(a),freestack(b))
+# define MESSAGE(string, colour) (col_endl_fd(colour, string, 1),FS(),exit(1))
+# define ERR() (col_endl_fd(FRED, "Error", 1), exit(1))
 # define CAT(A, B) A B
 # define ARRLEN(args, ac) ac = 0;while(args[ac])ac++;ac++;
 

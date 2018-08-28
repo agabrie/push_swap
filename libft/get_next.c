@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:08:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/28 08:33:02 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/28 17:14:35 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,20 @@ void	norm(t_gnl *g, char **str, char **line)
 {
 	if (ft_conchar(g->tmp, g->delimiter))
 	{
-		ft_strdel(&*str);
+		free(*str);
 		*str = ft_dup_conchar(g->tmp, g->delimiter);
 		g->i = ft_index_of_char(g->tmp, g->delimiter) + 1;
+		free(*line);
 		*line = ft_strdup(*str);
 		g->ret = 1;
 		free(*str);
 		*str = ft_strdup(g->tmp + g->i);
-		
 	}
 	else
 	{
+		free(*line);
 		*line = ft_strdup(g->tmp);
-		ft_strclr(*str);
+		free(*str);
 	}
 	free(g->tmp);
 }

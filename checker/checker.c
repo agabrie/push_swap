@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/28 16:16:47 by zee              ###   ########.fr       */
+/*   Updated: 2018/08/28 17:53:15 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,14 @@ void		check_sorted(t_stackdata *a, t_stackdata *b)
 	t_stack *head;
 
 	if (b->size)
-	{
-		freestack(a);
-		freestack(b);
-		//while(1){}
 		MESSAGE("KO", FRED);
-	}
 	head = a->lst;
 	while (head && head->next)
 	{
 		if (head->value < head->next->value)
 			head = head->next;
 		else
-		{
-			freestack(a);
-			freestack(b);
-			//while(1){}
 			MESSAGE("KO", FRED);
-		}
 	}
-	freestack(a);
-	freestack(b);
-	//while(1){}
 	MESSAGE("OK", FGRN);
 }
-
-

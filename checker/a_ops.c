@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:06:58 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 17:29:02 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/28 17:19:51 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		sa(t_stackdata *a)
 {
 	t_stack *temp;
+
 	if (a->lst && a->lst->next)
 	{
 		temp = a->lst;

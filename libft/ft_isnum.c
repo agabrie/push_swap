@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 09:08:33 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 15:09:42 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/28 17:15:37 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_isnum(char *str)
 {
-	int index;
-	int len;
-	char *number;
+	int		index;
+	int		len;
+	char	*number;
 
 	number = ft_itoa(ft_atoi(str));
 	index = 0;

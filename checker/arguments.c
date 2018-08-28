@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/28 16:26:33 by zee              ###   ########.fr       */
+/*   Updated: 2018/08/28 17:48:51 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#define CHECKNUM() if(!ft_isnum(args[ac - (i + 1)]))ERR();
 
 void		rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 {
@@ -37,11 +38,7 @@ void		rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 	else if (ft_strequ(line, "rrr"))
 		rrr(a, b);
 	else
-	{
-		freestack(a);
-		freestack(b);
-		ERR();
-	}
+		MESSAGE("ERROR", FRED);
 	DEBUGIT(a, b, debug, line);
 }
 
@@ -68,7 +65,8 @@ int		lst_size(t_stackdata *stack)
 {
 	t_stack *head;
 	int		i;
-	if(!stack->lst)
+
+	if (!stack->lst)
 		return (0);
 	head = stack->lst;
 
@@ -80,7 +78,8 @@ int		lst_size(t_stackdata *stack)
 	}
 	return (i);
 }
-void initialise(t_ps *ps)
+
+void	initialise(t_ps *ps)
 {
 	ps->debug = 0;
 	ps->a.size = 0;
@@ -88,7 +87,8 @@ void initialise(t_ps *ps)
 	ps->a.lst = NULL;
 	ps->b.lst = NULL;
 }
-void		init(t_ps *ps, char **av, int ac)
+
+void	init(t_ps *ps, char **av, int ac)
 {
 	int		i;
 	char	**args;
@@ -110,13 +110,9 @@ void		init(t_ps *ps, char **av, int ac)
 	check_dups(args);
 	while (ac - (i + 1) >= (0 + ps->debug) && ac - (i + 1) < ac)
 	{
-		if (!ft_isnum(args[ac - (i + 1)]))
-			ERR();
+		CHECKNUM();
 		push(&ps->a, ft_atoi(args[ac - (i + 1)]));
 		i++;
 	}
-	
 	freearray(args);
-	//freestack(&ps->a);
-	
 }
