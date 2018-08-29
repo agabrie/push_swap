@@ -6,14 +6,14 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/28 17:48:51 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:34:52 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #define CHECKNUM() if(!ft_isnum(args[ac - (i + 1)]))ERR();
 
-void		rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
+void	rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 {
 	if (ft_strequ(line, "sa"))
 		sa(a);
@@ -42,7 +42,7 @@ void		rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 	DEBUGIT(a, b, debug, line);
 }
 
-void		windows_tests(t_stackdata *a, t_stackdata *b, int db)
+void	windows_tests(t_stackdata *a, t_stackdata *b, int db)
 {
 	rule(a, b, "rra", db);
 	rule(a, b, "pb", db);
@@ -69,7 +69,6 @@ int		lst_size(t_stackdata *stack)
 	if (!stack->lst)
 		return (0);
 	head = stack->lst;
-
 	i = 0;
 	while (head)
 	{
