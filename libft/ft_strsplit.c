@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 15:22:33 by agabrie           #+#    #+#             */
-/*   Updated: 2018/06/03 15:22:38 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 12:50:55 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char			**ft_strsplit(char const *s, char c)
 		return (NULL);
 	wc = ft_wcount(s, c, 0);
 	len = 0;
-	stra = (char **)ft_memalloc((wc + 1) * sizeof(char *));
+	stra = (char **)malloc((wc) * sizeof(char *) + 1);
 	if (!stra)
 		return (NULL);
 	i = 0;

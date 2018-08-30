@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/19 16:43:54 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 08:38:23 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void		check_dups(char **av)
 		while (av[j])
 		{
 			if (ft_strequ(av[i], av[j]))
+			{
 				ERR();
+			}
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 08:47:48 by cking             #+#    #+#             */
-/*   Updated: 2018/08/27 14:01:25 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 12:49:52 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strnew(size_t size)
 {
 	char *str;
 
-	if (!(str = (char *)malloc(sizeof(char) * size)))
+	if (!(str = (char *)malloc(sizeof(char) * size + 1)))
 		return (NULL);
-	ft_bzero(str, size);
+	ft_bzero(str, size + 1);
 	return (str);
 }

@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/29 23:22:26 by zee              ###   ########.fr       */
+/*   Updated: 2018/08/30 08:31:22 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 # define RULE(string) rule(&ps->a, &ps->b, string);continue ;
+# define DRULE(string) rule(&ps->a, &ps->b, string);return(1);
+# define A (ps->a.lst)
+# define B (ps->b.lst)
+# define AN (ps->a.lst->next)
+# define BN (ps->b.lst->next)
+# define AA (A && AN)
+# define BB (B && BN)
+# define AB (AA && BB)
+# define ABV (bottom_val(&ps->a))
+# define BBV (bottom_val(&ps->b))
 
 /*void nrma(t_ps *ps)
 {
@@ -131,56 +141,65 @@
 	}
 }
 */
+
+int	checkdoublerule(t_ps *ps)
+{
+	if ((AB)\
+	&& (BN->value > B->value) && (A->value > AN->value) && (A->value < ABV))
+	{
+		col_endl_fd(FRED, "ss1", 2);
+		DRULE("ss");
+	}
+	if ((AB) && (BN->value < B->value) && (A->value < AN->value)\
+	&& (AN->value > ABV) && (BBV > BN->value))
+	{
+		col_endl_fd(FRED, "ss2", 2);
+		DRULE("ss");
+	}
+	if ((AB) && (B->value < BBV) && (A->value > ABV))
+	{
+		col_endl_fd(FRED, "rr1", 2);
+		DRULE("rr");
+	}
+	return (0);
+}
+
 void	frankenstein(t_ps *ps)
 {
 	while(!(check_sorted(&ps->a)==1))
 	{
-		if ((ps->b.lst && ps->b.lst->next && ps->a.lst && ps->a.lst->next) && (ps->b.lst->next->value > ps->b.lst->value) && (ps->a.lst->value > ps->a.lst->next->value) && (ps->a.lst->value < bottom_val(&ps->a)))
-			{
-				col_endl_fd(FRED, "ss1", 2);
-				RULE("ss");
-			}
-		if ((ps->b.lst && ps->b.lst->next && ps->a.lst && ps->a.lst->next) && (ps->b.lst->next->value < ps->b.lst->value) && (ps->a.lst->value < ps->a.lst->next->value) && (ps->a.lst->next->value > bottom_val(&ps->a)) && (bottom_val(&ps->b) > ps->b.lst->next->value))
-			{
-				col_endl_fd(FRED, "ss2", 2);
-				RULE("ss");
-			}
-			if ((ps->b.lst && ps->b.lst->next && ps->a.lst && ps->a.lst->next) && (ps->b.lst->value < bottom_val(&ps->b)) && (ps->a.lst->value > bottom_val(&ps->a)))
-			{
-				col_endl_fd(FRED, "rr1", 2);
-				RULE("rr");
-			}
-			if((ps->a.lst && ps->a.lst->next) && (ps->a.lst->value > bottom_val(&ps->a)))
-			{
-				col_endl_fd(FRED, "ra1", 2);
-				RULE("ra");
-			}
-			
-			if ((ps->a.lst && ps->a.lst->next) && (ps->a.lst->value > ps->a.lst->next->value) && (ps->a.lst->value < bottom_val(&ps->a)))
-			{
-				col_endl_fd(FRED, "sa1", 2);
-				RULE("sa");
-			}
-			if ((ps->b.lst && ps->b.lst->next) && (ps->b.lst->value < bottom_val(&ps->b)))
-			{
-				col_endl_fd(FRED, "rb1", 2);
-				RULE("rb");
-			}
-			if ((ps->b.lst && ps->b.lst->next) && (ps->b.lst->next->value > ps->b.lst->value))
-			{
-				col_endl_fd(FRED, "sb1", 2);
-				RULE("sb");
-			}
-			if((ps->a.lst && ps->a.lst->next) && (bottom_val(&ps->a) < ps->a.lst->value) && (bottom_val(&ps->a) < ps->a.lst->next->value))
-			{
-				col_endl_fd(FRED, "rra1", 2);
-				RULE("rra");
-			}
-			if ((ps->a.lst && ps->a.lst->next) && (ps->a.lst->next->value > ps->a.lst->value) && (ps->a.lst->next->value > bottom_val(&ps->a)))
-			{
-				col_endl_fd(FRED, "sa2", 2);
-				RULE("sa");
-			}
+		if (checkdoublerule(ps))
+			continue;
+		if ((AA) && (A->value > ABV))
+		{
+			col_endl_fd(FRED, "ra1", 2);
+			RULE("ra");
+		}
+		if ((AA) && (A->value > AN->value) && (A->value < ABV))
+		{
+			col_endl_fd(FRED, "sa1", 2);
+			RULE("sa");
+		}
+		if ((BB) && (B->value < BBV))
+		{
+			col_endl_fd(FRED, "rb1", 2);
+			RULE("rb");
+		}
+		if ((BB) && (BN->value > B->value))
+		{
+			col_endl_fd(FRED, "sb1", 2);
+			RULE("sb");
+		}
+		if ((AA) && (ABV < A->value) && (ABV < AN->value))
+		{
+			col_endl_fd(FRED, "rra1", 2);
+			RULE("rra");
+		}
+		if ((AA) && (AN->value > A->value) && (AN->value > ABV))
+		{
+			col_endl_fd(FRED, "sa2", 2);
+			RULE("sa");
+		}
 			/*
 			if ((ps->b.lst && ps->b.lst->next) && (ps->b.lst->value < bottom_val(&ps->b)))
 			{
@@ -211,12 +230,9 @@ void	frankenstein(t_ps *ps)
 						RULE("rrb");
 					}
 				}
-			}
+			}*/
 			col_endl_fd(FRED, "pb10", 2);
 			RULE("pb");
-		}*/
-		col_endl_fd(FRED, "pb10", 2);
-		RULE("pb");
 		}
 		col_endl_fd(FGRN, "SORTED A", 2);
 		//printbothstacks(&ps->a, &ps->b);

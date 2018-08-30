@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/29 15:25:10 by zee              ###   ########.fr       */
+/*   Updated: 2018/08/30 12:51:13 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		rule(t_stackdata *a, t_stackdata *b, char *line)
 	else if (ft_strequ(line, "rrr"))
 		rrr(a, b);
 	else
-		ERR();
+		MESSAGE("ERROR", FRED);
 	//printbothstacks(a, b);
 }
 
@@ -79,7 +79,9 @@ void		init(t_ps *ps, char **av, int ac)
 	while (ac - (i + 1) >= (0) && ac - (i + 1) < ac)
 	{
 		if (!ft_isnum(args[ac - (i + 1)]))
+		{
 			ERR();
+		}
 		push(&ps->a, ft_atoi(args[ac - (i + 1)]));
 		i++;
 	}

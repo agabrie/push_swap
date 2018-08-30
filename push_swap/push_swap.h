@@ -6,20 +6,21 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/25 15:00:18 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 08:42:43 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef PSWAP_H
+# define PSWAP_H
 # include <stdlib.h>
 # include <stdio.h>
 # include "../libft/libft.h"
 # define MIN -2147483648
 # define MAX 2147483647
 # define VAR(NAME) #NAME
-# define MESSAGE(string, colour)(col_endl_fd(colour, string, 1), exit(1))
-# define ERR() (MESSAGE("Error", FRED))
+# define FS() (freestack(a),freestack(b))
+# define MESSAGE(string, colour) (col_endl_fd(colour, string, 1),FS(),exit(1))
+# define ERR() (col_endl_fd(FRED, "Errors", 1), exit(1))
 # define CAT(A, B) A B
 # define ARRLEN(args, ac) ac = 0;while(args[ac])ac++;ac++;
 

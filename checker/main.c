@@ -24,13 +24,8 @@ int			main(int ac, char **av)
 		line = malloc(10);
 		while (get_next_line(0, &line) > 0)
 		{
-			if(ft_strcmp(line, ""))
-			{
 				rule(&ps.a, &ps.b, line, ps.debug);
 				moves++;
-			}
-			else
-				break ;
 		}
 		//free(line);
 		col_str_fd(FYEL, "Number of Moves : ", 2);

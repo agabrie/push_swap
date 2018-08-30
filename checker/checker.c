@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/29 22:38:22 by zee              ###   ########.fr       */
+/*   Updated: 2018/08/30 08:36:34 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void		check_dups(char **av)
 		while (av[j])
 		{
 			if (ft_strequ(av[i], av[j]))
+			{
 				ERR();
+			}
 			j++;
 		}
 		i++;
@@ -33,10 +35,10 @@ void		check_dups(char **av)
 
 void		printbothstacks(t_stackdata *a, t_stackdata *b)
 {
-	col_str_fd(FCYN, CAT("     Stack ", CAT(VAR(a), " : ")), 2);
+	col_str_fd(FCYN, CAT("Stack ", CAT(VAR(a), " : ")), 2);
 	ft_nbrendl_fd(lst_size(a), 2);
 	printstack(a->lst);
-	col_str_fd(FMAG, CAT("     Stack ", CAT(VAR(b), " : ")), 2);
+	col_str_fd(FMAG, CAT("Stack ", CAT(VAR(b), " : ")), 2);
 	ft_nbrendl_fd(lst_size(b), 2);
 	printstack(b->lst);
 }
