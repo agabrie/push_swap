@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:06:58 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 17:30:51 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:11:09 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		sa(t_stackdata *a)
 		a->lst = a->lst->next;
 		temp->next = a->lst->next;
 		a->lst->next = temp;
-		ft_putendl_fd("sa", 1);
+		//ft_putendl_fd("sa", 1);
 	}
 	return ;
 }
@@ -38,7 +38,7 @@ void		pa(t_stackdata *a, t_stackdata *b)
 		return ;
 	temp->next = a->lst;
 	a->lst = temp;
-	ft_putendl_fd("pa", 1);
+	//ft_putendl_fd("pa", 1);
 }
 
 void		ra(t_stackdata *a)
@@ -59,7 +59,7 @@ void		ra(t_stackdata *a)
 		head->next = temp;
 		temp->next = NULL;
 	}
-	ft_putendl_fd("ra", 1);
+	//ft_putendl_fd("ra", 1);
 }
 
 void		rra(t_stackdata *a)
@@ -82,5 +82,5 @@ void		rra(t_stackdata *a)
 		a->lst->next = temp;
 		head->next = NULL;
 	}
-	ft_putendl_fd("rra", 1);
+	//ft_putendl_fd("rra", 1);
 }

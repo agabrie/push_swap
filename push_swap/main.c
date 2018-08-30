@@ -6,13 +6,13 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 08:31:22 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:14:10 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-# define RULE(string) rule(&ps->a, &ps->b, string);continue ;
-# define DRULE(string) rule(&ps->a, &ps->b, string);return(1);
+# define RULE(string) rule(&ps->a, &ps->b, string);ft_putendl(string);continue ;
+# define DRULE(string) rule(&ps->a, &ps->b, string);ft_putendl(string);return(1);
 # define A (ps->a.lst)
 # define B (ps->b.lst)
 # define AN (ps->a.lst->next)
