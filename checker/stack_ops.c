@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:07:25 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/29 22:05:14 by zee              ###   ########.fr       */
+/*   Updated: 2018/08/30 13:43:18 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int			peek(t_stack *top)
 void		printstack(t_stack *stack)
 {
 	t_stack *head;
-	int i = 0;
+	int		i = 0;
 
 	head = stack;
 	while (head)
 	{
 		i++;
-		if(i % 10 == 0)
+		if (i % 10 == 0)
 			ft_nbrendl_fd(peek(head), 2);
 		else
 		{

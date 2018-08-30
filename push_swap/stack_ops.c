@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:07:25 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 17:33:53 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:44:11 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,19 @@ int			peek(t_stack *top)
 void		printstack(t_stack *stack)
 {
 	t_stack *head;
+	int i = 0;
 
 	head = stack;
 	while (head)
 	{
-		ft_nbrendl_fd(peek(head), 2);
+		i++;
+		if(i % 10 == 0)
+			ft_nbrendl_fd(peek(head), 2);
+		else
+		{
+			ft_putnbr_fd(peek(head), 2);
+			ft_putchar_fd(' ', 2);
+		}
 		head = head->next;
 	}
 	ft_putchar_fd('\n', 2);

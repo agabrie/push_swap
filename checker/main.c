@@ -24,9 +24,13 @@ int			main(int ac, char **av)
 		line = malloc(10);
 		while (get_next_line(0, &line) > 0)
 		{
-				rule(&ps.a, &ps.b, line, ps.debug);
-				moves++;
+			if (!line)
+				break ;
+			rule(&ps.a, &ps.b, line, ps.debug);
+			moves++;
 		}
+		// while (1)
+		// 	;
 		//free(line);
 		col_str_fd(FYEL, "Number of Moves : ", 2);
 		ft_nbrendl_fd(moves, 2);

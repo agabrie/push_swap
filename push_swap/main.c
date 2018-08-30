@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 13:14:10 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:49:44 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,11 @@ int	checkdoublerule(t_ps *ps)
 
 void	frankenstein(t_ps *ps)
 {
+	int i = -1;
+	printbothstacks(&ps->a, &ps->b);
 	while(!(check_sorted(&ps->a)==1))
 	{
+		i++;
 		if (checkdoublerule(ps))
 			continue;
 		if ((AA) && (A->value > ABV))
@@ -235,9 +238,13 @@ void	frankenstein(t_ps *ps)
 			RULE("pb");
 		}
 		col_endl_fd(FGRN, "SORTED A", 2);
+		col_str_fd(FYEL, "NUMBER OF MOVES : ", 2);
+		ft_nbrendl_fd(i, 2);
 		//printbothstacks(&ps->a, &ps->b);
 		exit(1);
 }
+
+
 
 int			main(int ac, char **av)
 {
@@ -247,7 +254,7 @@ int			main(int ac, char **av)
 	{
 		init(&ps, av, ac);
 		//printbothstacks(&ps.a, &ps.b);
-		if(lst_size(&ps.a) <= 20)
+		//if(lst_size(&ps.a) <= 20)
 			frankenstein(&ps);
 		/*else
 			partition(&ps);

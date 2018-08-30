@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 08:38:23 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:41:36 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int		check_inverted(t_stackdata *a)
 void		printbothstacks(t_stackdata *a, t_stackdata *b)
 {
 	col_str_fd(FCYN, CAT("Stack ", CAT(VAR(a), " : ")), 2);
-	ft_nbrendl_fd(a->size, 2);
+	ft_nbrendl_fd(lst_size(a), 2);
 	printstack(a->lst);
 	col_str_fd(FMAG, CAT("Stack ", CAT(VAR(b), " : ")), 2);
-	ft_nbrendl_fd(b->size, 2);
+	ft_nbrendl_fd(lst_size(b), 2);
 	printstack(b->lst);
 }
 

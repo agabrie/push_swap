@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 13:05:24 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:41:29 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,18 @@ void		check_sorted(t_stackdata *a, t_stackdata *b)
 	t_stack *head;
 
 	if (lst_size(b))
+	{
 		MESSAGE("KO", FRED);
+	}
 	head = a->lst;
 	while (head && head->next)
 	{
 		if (head->value < head->next->value)
 			head = head->next;
 		else
+		{
 			MESSAGE("KO", FRED);
+		}
 	}
 	MESSAGE("OK", FGRN);
 }

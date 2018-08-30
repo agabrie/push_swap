@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 13:07:06 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:18:09 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ void	rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 		rra(a);
 	else if (ft_strequ(line, "rrb"))
 		rrb(b);
-	else if (ft_strequ(line, "rrr"))
-		rrr(a, b);
+	 else if (ft_strequ(line, "rrr"))
+	 	rrr(a, b);
 	else
 	{
-		ft_putendl_fd(line, 2);
 		MESSAGE("ERROR", FRED);
 	}
 	DEBUGIT(a, b, debug, line);
