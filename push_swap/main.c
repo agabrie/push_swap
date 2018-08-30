@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 14:49:44 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/30 15:51:42 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,18 +147,18 @@ int	checkdoublerule(t_ps *ps)
 	if ((AB)\
 	&& (BN->value > B->value) && (A->value > AN->value) && (A->value < ABV))
 	{
-		col_endl_fd(FRED, "ss1", 2);
+		//col_endl_fd(FRED, "ss1", 2);
 		DRULE("ss");
 	}
 	if ((AB) && (BN->value < B->value) && (A->value < AN->value)\
 	&& (AN->value > ABV) && (BBV > BN->value))
 	{
-		col_endl_fd(FRED, "ss2", 2);
+		//col_endl_fd(FRED, "ss2", 2);
 		DRULE("ss");
 	}
 	if ((AB) && (B->value < BBV) && (A->value > ABV))
 	{
-		col_endl_fd(FRED, "rr1", 2);
+		//col_endl_fd(FRED, "rr1", 2);
 		DRULE("rr");
 	}
 	return (0);
@@ -175,32 +175,32 @@ void	frankenstein(t_ps *ps)
 			continue;
 		if ((AA) && (A->value > ABV))
 		{
-			col_endl_fd(FRED, "ra1", 2);
+			//col_endl_fd(FRED, "ra1", 2);
 			RULE("ra");
 		}
 		if ((AA) && (A->value > AN->value) && (A->value < ABV))
 		{
-			col_endl_fd(FRED, "sa1", 2);
+			//col_endl_fd(FRED, "sa1", 2);
 			RULE("sa");
 		}
 		if ((BB) && (B->value < BBV))
 		{
-			col_endl_fd(FRED, "rb1", 2);
+			//col_endl_fd(FRED, "rb1", 2);
 			RULE("rb");
 		}
 		if ((BB) && (BN->value > B->value))
 		{
-			col_endl_fd(FRED, "sb1", 2);
+			//col_endl_fd(FRED, "sb1", 2);
 			RULE("sb");
 		}
 		if ((AA) && (ABV < A->value) && (ABV < AN->value))
 		{
-			col_endl_fd(FRED, "rra1", 2);
+			//col_endl_fd(FRED, "rra1", 2);
 			RULE("rra");
 		}
 		if ((AA) && (AN->value > A->value) && (AN->value > ABV))
 		{
-			col_endl_fd(FRED, "sa2", 2);
+			//col_endl_fd(FRED, "sa2", 2);
 			RULE("sa");
 		}
 			/*
@@ -234,13 +234,13 @@ void	frankenstein(t_ps *ps)
 					}
 				}
 			}*/
-			col_endl_fd(FRED, "pb10", 2);
+			//col_endl_fd(FRED, "pb10", 2);
 			RULE("pb");
 		}
 		col_endl_fd(FGRN, "SORTED A", 2);
 		col_str_fd(FYEL, "NUMBER OF MOVES : ", 2);
 		ft_nbrendl_fd(i, 2);
-		//printbothstacks(&ps->a, &ps->b);
+		printbothstacks(&ps->a, &ps->b);
 		exit(1);
 }
 
