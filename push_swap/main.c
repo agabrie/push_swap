@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/25 14:18:12 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/29 23:22:26 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-# define RULE(string) rule(&ps.a, &ps.b, string, 0);continue ;
+# define RULE(string) rule(&ps->a, &ps->b, string);continue ;
 
 /*void nrma(t_ps *ps)
 {
@@ -131,7 +131,97 @@
 	}
 }
 */
-
+void	frankenstein(t_ps *ps)
+{
+	while(!(check_sorted(&ps->a)==1))
+	{
+		if ((ps->b.lst && ps->b.lst->next && ps->a.lst && ps->a.lst->next) && (ps->b.lst->next->value > ps->b.lst->value) && (ps->a.lst->value > ps->a.lst->next->value) && (ps->a.lst->value < bottom_val(&ps->a)))
+			{
+				col_endl_fd(FRED, "ss1", 2);
+				RULE("ss");
+			}
+		if ((ps->b.lst && ps->b.lst->next && ps->a.lst && ps->a.lst->next) && (ps->b.lst->next->value < ps->b.lst->value) && (ps->a.lst->value < ps->a.lst->next->value) && (ps->a.lst->next->value > bottom_val(&ps->a)) && (bottom_val(&ps->b) > ps->b.lst->next->value))
+			{
+				col_endl_fd(FRED, "ss2", 2);
+				RULE("ss");
+			}
+			if ((ps->b.lst && ps->b.lst->next && ps->a.lst && ps->a.lst->next) && (ps->b.lst->value < bottom_val(&ps->b)) && (ps->a.lst->value > bottom_val(&ps->a)))
+			{
+				col_endl_fd(FRED, "rr1", 2);
+				RULE("rr");
+			}
+			if((ps->a.lst && ps->a.lst->next) && (ps->a.lst->value > bottom_val(&ps->a)))
+			{
+				col_endl_fd(FRED, "ra1", 2);
+				RULE("ra");
+			}
+			
+			if ((ps->a.lst && ps->a.lst->next) && (ps->a.lst->value > ps->a.lst->next->value) && (ps->a.lst->value < bottom_val(&ps->a)))
+			{
+				col_endl_fd(FRED, "sa1", 2);
+				RULE("sa");
+			}
+			if ((ps->b.lst && ps->b.lst->next) && (ps->b.lst->value < bottom_val(&ps->b)))
+			{
+				col_endl_fd(FRED, "rb1", 2);
+				RULE("rb");
+			}
+			if ((ps->b.lst && ps->b.lst->next) && (ps->b.lst->next->value > ps->b.lst->value))
+			{
+				col_endl_fd(FRED, "sb1", 2);
+				RULE("sb");
+			}
+			if((ps->a.lst && ps->a.lst->next) && (bottom_val(&ps->a) < ps->a.lst->value) && (bottom_val(&ps->a) < ps->a.lst->next->value))
+			{
+				col_endl_fd(FRED, "rra1", 2);
+				RULE("rra");
+			}
+			if ((ps->a.lst && ps->a.lst->next) && (ps->a.lst->next->value > ps->a.lst->value) && (ps->a.lst->next->value > bottom_val(&ps->a)))
+			{
+				col_endl_fd(FRED, "sa2", 2);
+				RULE("sa");
+			}
+			/*
+			if ((ps->b.lst && ps->b.lst->next) && (ps->b.lst->value < bottom_val(&ps->b)))
+			{
+				col_endl_fd(FRED, "rb1", 2);
+				RULE("rb");
+			}*/
+			/*
+			if((ps->a.lst && ps->b.lst && ps->b.lst->next) && ps->a.lst->value < highest_val(&ps->b) && ps->a.lst->value > lowest_val(&ps->b))
+			{
+				//col_endl_fd(FRED, "rotate b1", 2);
+				int a;
+				a = highest_under(&ps->b, ps->a.lst->value);
+				ft_nbrendl_fd(a, 2);
+				ft_nbrendl_fd(find_pos(&ps->b, a), 2);
+				if(find_pos(&ps->b, a) < lst_size(&ps->b)/2)
+				{
+					col_endl_fd(FRED, "rotate b2", 2);
+					while(highest_under(&ps->b, ps->a.lst->value) != ps->b.lst->value)
+					{
+						RULE("rb");
+					}
+				}
+				else
+				{
+					col_endl_fd(FRED, "rotate b3", 2);
+					while(highest_under(&ps->b, ps->a.lst->value) != ps->b.lst->value)
+					{
+						RULE("rrb");
+					}
+				}
+			}
+			col_endl_fd(FRED, "pb10", 2);
+			RULE("pb");
+		}*/
+		col_endl_fd(FRED, "pb10", 2);
+		RULE("pb");
+		}
+		col_endl_fd(FGRN, "SORTED A", 2);
+		//printbothstacks(&ps->a, &ps->b);
+		exit(1);
+}
 
 int			main(int ac, char **av)
 {
@@ -140,7 +230,12 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		init(&ps, av, ac);
-		printbothstacks(&ps.a, &ps.b);
+		//printbothstacks(&ps.a, &ps.b);
+		if(lst_size(&ps.a) <= 20)
+			frankenstein(&ps);
+		/*else
+			partition(&ps);
+		*/
 		/*int highest = highest_val(&ps.a);
 		int lowest = lowest_val(&ps.a);
 		while(!(check_sorted(&ps.a) == 1))

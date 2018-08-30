@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/28 17:53:15 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/29 22:38:22 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void		check_dups(char **av)
 
 void		printbothstacks(t_stackdata *a, t_stackdata *b)
 {
-	col_str_fd(FCYN, CAT("Stack ", CAT(VAR(a), " : ")), 2);
+	col_str_fd(FCYN, CAT("     Stack ", CAT(VAR(a), " : ")), 2);
 	ft_nbrendl_fd(lst_size(a), 2);
 	printstack(a->lst);
-	col_str_fd(FMAG, CAT("Stack ", CAT(VAR(b), " : ")), 2);
+	col_str_fd(FMAG, CAT("     Stack ", CAT(VAR(b), " : ")), 2);
 	ft_nbrendl_fd(lst_size(b), 2);
 	printstack(b->lst);
 }
@@ -45,7 +45,7 @@ void		check_sorted(t_stackdata *a, t_stackdata *b)
 {
 	t_stack *head;
 
-	if (b->size)
+	if (lst_size(b))
 		MESSAGE("KO", FRED);
 	head = a->lst;
 	while (head && head->next)

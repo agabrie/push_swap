@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/29 09:34:52 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/29 23:24:31 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ void	windows_tests(t_stackdata *a, t_stackdata *b, int db)
 
 void	freestack(t_stackdata *stack)
 {
-	while (stack->lst)
+	if(stack->lst)
 	{
+		while (stack->lst)
+		{
+			free(stack->lst);
+			stack->lst = stack->lst->next;
+		}
 		free(stack->lst);
-		stack->lst = stack->lst->next;
 	}
-	free(stack->lst);
 }
 
 int		lst_size(t_stackdata *stack)

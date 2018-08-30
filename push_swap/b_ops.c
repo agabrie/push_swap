@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_ops.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:07:09 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 17:30:38 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/29 22:25:37 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		pb(t_stackdata *a, t_stackdata *b)
 		return ;
 	temp->next = b->lst;
 	b->lst = temp;
+	ft_putendl_fd("pb", 1);
 }
 
 void		rb(t_stackdata *b)

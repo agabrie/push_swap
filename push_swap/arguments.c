@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 17:32:17 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/29 15:25:10 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ void		windows_tests(t_stackdata *a, t_stackdata *b)
 	rule(a, b, "pa");
 }
 
+void	initialise(t_ps *ps)
+{
+	ps->debug = 0;
+	ps->a.size = 0;
+	ps->b.size = 0;
+	ps->a.lst = NULL;
+	ps->b.lst = NULL;
+}
+
 void		init(t_ps *ps, char **av, int ac)
 {
 	int				i;
@@ -59,6 +68,7 @@ void		init(t_ps *ps, char **av, int ac)
 	args = (char**)malloc(sizeof(char *) * ac);
 	arrcpy(av, args);
 	i = 1;
+	initialise(ps);
 	if (ac == 2)
 	{
 		freearray(args);
