@@ -6,13 +6,13 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 15:42:01 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/27 12:18:17 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 10:57:59 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 100
+# define BUFF_SIZE 1
 # define RSET "\033[00m"
 # define FBLK "\033[30m"
 # define FRED "\033[31m"
@@ -132,4 +132,5 @@ void			col_endl_fd(char *colour, char *str, int fd);
 int				ft_isnum(char *str);
 void			freearray(char **arr);
 void			arrcpy(char **a, char **b);
+int				gnl(const int fd, char **line);
 #endif

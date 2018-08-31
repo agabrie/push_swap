@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 08:42:43 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 09:56:18 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define VAR(NAME) #NAME
 # define FS() (freestack(a),freestack(b))
 # define MESSAGE(string, colour) (col_endl_fd(colour, string, 1),FS(),exit(1))
-# define ERR() (col_endl_fd(FRED, "Errors", 1), exit(1))
+# define ERR() (col_endl_fd(FRED, "Error", 1), exit(1))
 # define CAT(A, B) A B
 # define ARRLEN(args, ac) ac = 0;while(args[ac])ac++;ac++;
 
@@ -75,6 +75,6 @@ int				bottom_val(t_stackdata *stack);
 int				lst_size(t_stackdata *stack);
 int				lowest_val(t_stackdata *stack);
 int				highest_val(t_stackdata *stack);
-int				highest_under(t_stackdata *stack,int val);
+int				highest_under(t_stackdata *stack, int val);
 int				find_pos(t_stackdata *stack, int value);
 #endif

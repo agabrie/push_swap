@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 14:18:09 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 10:14:43 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 	 	rrr(a, b);
 	else
 	{
+		if(ft_strequ(line, ""))
+			col_endl_fd(FYEL, "THIS HERE IS NOT FOR THE PROGRAM ITSELF", 2);
+		else
+			col_endl_fd(FYEL, line, 2);
 		MESSAGE("ERROR", FRED);
 	}
 	DEBUGIT(a, b, debug, line);

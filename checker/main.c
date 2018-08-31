@@ -22,11 +22,12 @@ int			main(int ac, char **av)
 		moves = 0;
 		init(&ps, av, ac);
 		line = malloc(10);
-		while (get_next_line(0, &line) > 0)
+		while (gnl(0, &line))
 		{
 			if (!line)
 				break ;
 			rule(&ps.a, &ps.b, line, ps.debug);
+			free(line);
 			moves++;
 		}
 		// while (1)

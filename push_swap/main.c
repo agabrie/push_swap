@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 15:51:42 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 10:42:24 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int	checkdoublerule(t_ps *ps)
 
 void	frankenstein(t_ps *ps)
 {
-	int i = -1;
+	int i = 0;
 	printbothstacks(&ps->a, &ps->b);
 	while(!(check_sorted(&ps->a)==1))
 	{
@@ -209,7 +209,7 @@ void	frankenstein(t_ps *ps)
 				col_endl_fd(FRED, "rb1", 2);
 				RULE("rb");
 			}*/
-			/*
+			
 			if((ps->a.lst && ps->b.lst && ps->b.lst->next) && ps->a.lst->value < highest_val(&ps->b) && ps->a.lst->value > lowest_val(&ps->b))
 			{
 				//col_endl_fd(FRED, "rotate b1", 2);
@@ -219,21 +219,23 @@ void	frankenstein(t_ps *ps)
 				ft_nbrendl_fd(find_pos(&ps->b, a), 2);
 				if(find_pos(&ps->b, a) < lst_size(&ps->b)/2)
 				{
-					col_endl_fd(FRED, "rotate b2", 2);
+					//col_endl_fd(FRED, "rotate b2", 2);
 					while(highest_under(&ps->b, ps->a.lst->value) != ps->b.lst->value)
 					{
+						++i;
 						RULE("rb");
 					}
 				}
 				else
 				{
-					col_endl_fd(FRED, "rotate b3", 2);
+					//col_endl_fd(FRED, "rotate b3", 2);
 					while(highest_under(&ps->b, ps->a.lst->value) != ps->b.lst->value)
 					{
+						++i;
 						RULE("rrb");
 					}
 				}
-			}*/
+			}
 			//col_endl_fd(FRED, "pb10", 2);
 			RULE("pb");
 		}
@@ -241,7 +243,7 @@ void	frankenstein(t_ps *ps)
 		col_str_fd(FYEL, "NUMBER OF MOVES : ", 2);
 		ft_nbrendl_fd(i, 2);
 		printbothstacks(&ps->a, &ps->b);
-		exit(1);
+		exit(0);
 }
 
 
