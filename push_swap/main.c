@@ -6,26 +6,27 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 13:27:51 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:30:27 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-# define RULE(string) {rule(&ps->a, &ps->b, string);ft_putendl(string);continue;}
-# define DRULE(string) {rule(&ps->a, &ps->b, string);ft_putendl(string);return(1);}
-# define A (ps->a.lst)
-# define B (ps->b.lst)
-# define AN (ps->a.lst->next)
-# define BN (ps->b.lst->next)
-# define AA (A && AN)
-# define BB (B && BN)
-# define AB (AA && BB)
-# define ABV (bottom_val(&ps->a))
-# define BBV (bottom_val(&ps->b))
-# define HV(stack) (highest_val(stack))
-# define LV(stack) (lowest_val(stack))
+#define RULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);continue;}
+#define DRULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);return(1);}
+#define A (ps->a.lst)
+#define B (ps->b.lst)
+#define AN (ps->a.lst->next)
+#define BN (ps->b.lst->next)
+#define AA (A && AN)
+#define BB (B && BN)
+#define AB (AA && BB)
+#define ABV (bottom_val(&ps->a))
+#define BBV (bottom_val(&ps->b))
+#define HV(stack) (highest_val(stack))
+#define LV(stack) (lowest_val(stack))
 
-/*void nrma(t_ps *ps)
+/* void nrma(t_ps *ps) */
+/*
 {
 	t_stack *temp;
 	
@@ -205,11 +206,12 @@ void	backtoa(t_ps *ps)
 	rotate_a_end(ps);
 }
 
-void rotate_b(t_ps *ps, int i)
+void	rotate_b(t_ps *ps, int i)
 {
+	int	a;
+
 	if ((A && BB) && A->value < HV(&ps->b) && A->value > LV(&ps->b))
 	{
-		int a;
 		a = highest_under(&ps->b, A->value);
 		if (find_pos(&ps->b, a) < lst_size(&ps->b) / 2)
 		{
