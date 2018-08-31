@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 13:30:27 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:31:43 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@
 #define BBV (bottom_val(&ps->b))
 #define HV(stack) (highest_val(stack))
 #define LV(stack) (lowest_val(stack))
-
-/* void nrma(t_ps *ps) */
-/*
-{
-	t_stack *temp;
-	
-}
-*/
 
 /*int		dtt(t_stackdata a, t_stackdata b)
 {
@@ -126,6 +118,7 @@
 	return(size);
 }
 */
+
 /*void normalise(t_stackdata *a)
 {
 	int size = lst_size(a);
