@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 12:10:43 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 12:22:58 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define MIN -2147483648
 # define MAX 2147483647
 # define VAR(NAME) #NAME
+# define MOVES() (col_str_fd(FYEL, "Moves : ", 2),ft_nbrendl_fd(moves, 2))
 # define DEBUGIT(a,b,d,l) if(d){col_endl_fd(FYEL,l,2);printbothstacks(a,b);}
 # define FS() (freestack(a),freestack(b))
 # define MESSAGE(string, colour) (col_endl_fd(colour, string, 1),FS(),exit(1))

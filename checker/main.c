@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 12:08:00 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 12:25:29 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int			main(int ac, char **av)
 			free(line);
 			moves++;
 		}
-		col_str_fd(FYEL, "Number of Moves : ", 2);
-		ft_nbrendl_fd(moves, 2);
+		if (ps.debug)
+			MOVES();
 		check_sorted(&ps.a, &ps.b);
 	}
 	return (0);

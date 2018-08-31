@@ -6,13 +6,13 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 11:24:04 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:27:51 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-# define RULE(string) rule(&ps->a, &ps->b, string);ft_putendl(string);continue ;
-# define DRULE(string) rule(&ps->a, &ps->b, string);ft_putendl(string);return(1);
+# define RULE(string) {rule(&ps->a, &ps->b, string);ft_putendl(string);continue;}
+# define DRULE(string) {rule(&ps->a, &ps->b, string);ft_putendl(string);return(1);}
 # define A (ps->a.lst)
 # define B (ps->b.lst)
 # define AN (ps->a.lst->next)
@@ -22,6 +22,8 @@
 # define AB (AA && BB)
 # define ABV (bottom_val(&ps->a))
 # define BBV (bottom_val(&ps->b))
+# define HV(stack) (highest_val(stack))
+# define LV(stack) (lowest_val(stack))
 
 /*void nrma(t_ps *ps)
 {
@@ -147,106 +149,113 @@ int	checkdoublerule(t_ps *ps)
 	if ((AB)\
 	&& (BN->value > B->value) && (A->value > AN->value) && (A->value < ABV))
 	{
-		//col_endl_fd(FRED, "ss1", 2);
 		DRULE("ss");
 	}
 	if ((AB) && (BN->value < B->value) && (A->value < AN->value)\
 	&& (AN->value > ABV) && (BBV > BN->value))
 	{
-		//col_endl_fd(FRED, "ss2", 2);
 		DRULE("ss");
 	}
 	if ((AB) && (B->value < BBV) && (A->value > ABV))
 	{
-		//col_endl_fd(FRED, "rr1", 2);
 		DRULE("rr");
 	}
 	return (0);
 }
 
+void	rotate_a_end(t_ps *ps)
+{
+	while (!(check_sorted(&ps->a) == 1))
+	{
+		if (find_pos(&ps->a, highest_val(&ps->a)) < (lst_size(&ps->a) / 2))
+		{
+			RULE("ra");
+		}
+		else
+		{
+			RULE("rra");
+		}
+	}
+}
+
+void	backtoa(t_ps *ps)
+{
+	while (B)
+	{
+		if (A->value < HV(&ps->b))
+			RULE("ra");
+		if (!B || ((ABV > HV(&ps->b))\
+		&& (ABV < A->value)))
+			RULE("rra");
+		if (HV(&ps->b) != B->value)
+		{
+			if (find_pos(&ps->b, HV(&ps->b)) < (lst_size(&ps->a) / 2))
+			{
+				while (HV(&ps->b) != B->value)
+					RULE("rb");
+			}
+			else
+			{
+				while (HV(&ps->b) != B->value)
+					RULE("rrb");
+			}
+		}
+		RULE("pa");
+	}
+	rotate_a_end(ps);
+}
+
+void rotate_b(t_ps *ps, int i)
+{
+	if ((A && BB) && A->value < HV(&ps->b) && A->value > LV(&ps->b))
+	{
+		int a;
+		a = highest_under(&ps->b, A->value);
+		if (find_pos(&ps->b, a) < lst_size(&ps->b) / 2)
+		{
+			while (highest_under(&ps->b, A->value) != B->value)
+			{
+				++i;
+				RULE("rb");
+			}
+		}
+		else
+		{
+			while (highest_under(&ps->b, A->value) != B->value)
+			{
+				++i;
+				RULE("rrb");
+			}
+		}
+	}
+}
+
 void	frankenstein(t_ps *ps)
 {
-	int i = 0;
-	//printbothstacks(&ps->a, &ps->b);
-	while(!(check_sorted(&ps->a)==1))
+	int i;
+
+	i = 0;
+	while (!(check_sorted(&ps->a) == 1))
 	{
 		i++;
 		if (checkdoublerule(ps))
 			continue;
 		if ((AA) && (A->value > ABV))
-		{
-			//col_endl_fd(FRED, "ra1", 2);
 			RULE("ra");
-		}
 		if ((AA) && (A->value > AN->value) && (A->value < ABV))
-		{
-			//col_endl_fd(FRED, "sa1", 2);
 			RULE("sa");
-		}
 		if ((BB) && (B->value < BBV))
-		{
-			//col_endl_fd(FRED, "rb1", 2);
 			RULE("rb");
-		}
 		if ((BB) && (BN->value > B->value))
-		{
-			//col_endl_fd(FRED, "sb1", 2);
 			RULE("sb");
-		}
 		if ((AA) && (ABV < A->value) && (ABV < AN->value))
-		{
-			//col_endl_fd(FRED, "rra1", 2);
 			RULE("rra");
-		}
 		if ((AA) && (AN->value > A->value) && (AN->value > ABV))
-		{
-			//col_endl_fd(FRED, "sa2", 2);
 			RULE("sa");
-		}
-			/*
-			if ((ps->b.lst && ps->b.lst->next) && (ps->b.lst->value < bottom_val(&ps->b)))
-			{
-				col_endl_fd(FRED, "rb1", 2);
-				RULE("rb");
-			}*/
-			
-			if((ps->a.lst && ps->b.lst && ps->b.lst->next) && ps->a.lst->value < highest_val(&ps->b) && ps->a.lst->value > lowest_val(&ps->b))
-			{
-				//col_endl_fd(FRED, "rotate b1", 2);
-				int a;
-				a = highest_under(&ps->b, ps->a.lst->value);
-				ft_nbrendl_fd(a, 2);
-				ft_nbrendl_fd(find_pos(&ps->b, a), 2);
-				if(find_pos(&ps->b, a) < lst_size(&ps->b)/2)
-				{
-					//col_endl_fd(FRED, "rotate b2", 2);
-					while(highest_under(&ps->b, ps->a.lst->value) != ps->b.lst->value)
-					{
-						++i;
-						RULE("rb");
-					}
-				}
-				else
-				{
-					//col_endl_fd(FRED, "rotate b3", 2);
-					while(highest_under(&ps->b, ps->a.lst->value) != ps->b.lst->value)
-					{
-						++i;
-						RULE("rrb");
-					}
-				}
-			}
-			//col_endl_fd(FRED, "pb10", 2);
-			RULE("pb");
-		}
-		col_endl_fd(FGRN, "SORTED A", 2);
-		col_str_fd(FYEL, "NUMBER OF MOVES : ", 2);
-		ft_nbrendl_fd(i, 2);
-		//printbothstacks(&ps->a, &ps->b);
-		//exit(0);
+		rotate_b(ps, i);
+		RULE("pb");
+	}
 }
-
-
 
 int			main(int ac, char **av)
 {
@@ -255,9 +264,9 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		init(&ps, av, ac);
-		//printbothstacks(&ps.a, &ps.b);
-		//if(lst_size(&ps.a) <= 20)
+		if (lst_size(&ps.a) <= 20)
 			frankenstein(&ps);
+		backtoa(&ps);
 		/*else
 			partition(&ps);
 		*/
