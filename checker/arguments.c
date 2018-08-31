@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 10:14:43 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 12:09:31 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,11 @@ void	rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 		rra(a);
 	else if (ft_strequ(line, "rrb"))
 		rrb(b);
-	 else if (ft_strequ(line, "rrr"))
-	 	rrr(a, b);
+	else if (ft_strequ(line, "rrr"))
+		rrr(a, b);
 	else
-	{
-		if(ft_strequ(line, ""))
-			col_endl_fd(FYEL, "THIS HERE IS NOT FOR THE PROGRAM ITSELF", 2);
-		else
-			col_endl_fd(FYEL, line, 2);
 		MESSAGE("ERROR", FRED);
-	}
 	DEBUGIT(a, b, debug, line);
-}
-
-void	windows_tests(t_stackdata *a, t_stackdata *b, int db)
-{
-	rule(a, b, "rra", db);
-	rule(a, b, "pb", db);
-	rule(a, b, "sa", db);
-	rule(a, b, "rra", db);
-	rule(a, b, "pa", db);
 }
 
 void	freestack(t_stackdata *stack)

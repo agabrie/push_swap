@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 08:37:35 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 12:10:43 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void			check_dups(char **av);
 void			init(t_ps *ps, char **av, int ac);
 void			freestack(t_stackdata *stack);
 int				lst_size(t_stackdata *stack);
+int				longest_int(t_stack *stack);
 #endif

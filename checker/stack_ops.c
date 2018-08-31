@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:07:25 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 13:43:18 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 12:10:45 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,27 @@ int			peek(t_stack *top)
 void		printstack(t_stack *stack)
 {
 	t_stack *head;
-	int		i = 0;
+	int		i;
+	int		value;
+	int		iter;
 
 	head = stack;
+	i = 0;
 	while (head)
 	{
 		i++;
+		value = peek(head);
+		iter = longest_int(stack) - ft_intlen(value);
 		if (i % 10 == 0)
-			ft_nbrendl_fd(peek(head), 2);
+			ft_nbrendl_fd(value, 2);
 		else
 		{
-			ft_putnbr_fd(peek(head), 2);
-			ft_putchar_fd(' ', 2);
+			ft_putnbr_fd(value, 2);
+			while (iter-- + 1)
+				ft_putchar_fd(' ', 2);
 		}
 		head = head->next;
 	}
-	ft_putchar_fd('\n', 2);
+	if (i % 10 != 0)
+		ft_putchar_fd('\n', 2);
 }

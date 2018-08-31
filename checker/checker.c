@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 14:41:29 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/08/31 12:10:45 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ void		check_dups(char **av)
 
 void		printbothstacks(t_stackdata *a, t_stackdata *b)
 {
+	ft_putendl_fd("", 2);
 	col_str_fd(FCYN, CAT("Stack ", CAT(VAR(a), " : ")), 2);
 	ft_nbrendl_fd(lst_size(a), 2);
 	printstack(a->lst);
+	ft_putendl_fd("", 2);
 	col_str_fd(FMAG, CAT("Stack ", CAT(VAR(b), " : ")), 2);
 	ft_nbrendl_fd(lst_size(b), 2);
 	printstack(b->lst);
+	ft_putendl_fd("", 2);
 }
 
 void		check_sorted(t_stackdata *a, t_stackdata *b)
@@ -62,4 +65,23 @@ void		check_sorted(t_stackdata *a, t_stackdata *b)
 		}
 	}
 	MESSAGE("OK", FGRN);
+}
+
+int			longest_int(t_stack *stack)
+{
+	t_stack	*head;
+	int		longest;
+
+	if (stack)
+		head = stack;
+	else
+		return (0);
+	longest = ft_intlen(head->value);
+	while (head)
+	{
+		if (ft_intlen(head->value) > longest)
+			longest = ft_intlen(head->value);
+		head = head->next;
+	}
+	return (longest);
 }
