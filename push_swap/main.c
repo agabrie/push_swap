@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 13:31:43 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/01 08:23:46 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,7 @@ int			main(int ac, char **av)
 		if (lst_size(&ps.a) <= 20)
 			frankenstein(&ps);
 		backtoa(&ps);
+		freestack(&ps.a);
 		/*else
 			partition(&ps);
 		*/
@@ -412,5 +413,5 @@ int			main(int ac, char **av)
 			}
 		}*/
 	}
-	return (0);
+	exit(0);
 }

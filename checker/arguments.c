@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 12:20:30 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/01 08:34:59 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void	init(t_ps *ps, char **av, int ac)
 	arrcpy(av, args);
 	i = 1;
 	initialise(ps);
-	ps->debug = (ft_strequ(args[0], "-v") ? 1 : 0);
+	ps->debug = (ft_strequ(args[0], "-d") ? 1 : 0);
 	if (ac == 2 + ps->debug)
 	{
 		freearray(args);
 		if (ps->debug)
-			args = ft_strsplit(ft_strjoin("-v ", (av[1 + ps->debug])), ' ');
+			args = ft_strsplit(ft_strjoin("-d ", (av[1 + ps->debug])), ' ');
 		else
 			args = ft_strsplit(av[1 + ps->debug], ' ');
 		ARRLEN(args, ac);
