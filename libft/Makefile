@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+         #
+#    By: zee <zee@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/19 13:45:33 by agabrie           #+#    #+#              #
-#    Updated: 2018/08/31 10:58:19 by agabrie          ###   ########.fr        #
+#    Updated: 2018/09/01 06:50:44 by zee              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ EXTRA =		ft_isspace.c ft_isupper.c ft_islower.c ft_intlen.c ft_strrev.c \
 			ft_nbrendl.c calc_distance.c ft_power.c ft_putarr_fd.c \
 			ft_root.c ft_putarr.c get_next.c col_str_fd.c set_point.c \
 			put_coords_fd.c col_char_fd.c col_endl_fd.c ft_isnum.c freearray.c \
-			arrcpy.c max_gnl.c
+			arrcpy.c max_gnl.c g_n_l.c
 SRCS =		$(PART1) $(PART2) $(BONUS) $(EXTRA)
 OBJS =		$(SRCS:.c=.o)
 FLAGS =		-Wall -Werror -Wextra

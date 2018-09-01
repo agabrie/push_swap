@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 15:42:01 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 10:57:59 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/01 06:50:25 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,5 @@ int				ft_isnum(char *str);
 void			freearray(char **arr);
 void			arrcpy(char **a, char **b);
 int				gnl(const int fd, char **line);
+int				g_n_l(const int fd, char **line);
 #endif

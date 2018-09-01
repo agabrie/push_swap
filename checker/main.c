@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 12:25:29 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/01 08:12:04 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			main(int ac, char **av)
 {
 	t_ps		ps;
-	char		*line;
+	char		**line;
 	int			moves;
 
 	if (ac > 1)
@@ -23,15 +23,18 @@ int			main(int ac, char **av)
 		moves = 0;
 		init(&ps, av, ac);
 		line = malloc(10);
-		while (gnl(0, &line))
+		*line = malloc(10);
+		ft_memdel((void *)line);
+		while (g_n_l(0, line) > 0)
 		{
-			rule(&ps.a, &ps.b, line, ps.debug);
-			free(line);
+			rule(&ps.a, &ps.b, *line, ps.debug);
+			ft_memdel((void *)line);
 			moves++;
 		}
+		free(line);
 		if (ps.debug)
 			MOVES();
 		check_sorted(&ps.a, &ps.b);
 	}
-	return (0);
+	exit(0);
 }
