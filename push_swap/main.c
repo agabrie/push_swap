@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 18:19:50 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/01 21:57:47 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,6 @@ void	rotate_a_end(t_ps *ps)
 			RULE("rra");
 		}
 	}
-	/*while(!(check_sorted(&ps->a) == 1))
-	{
-			RULE("pb");
-	}
-	backtoa(ps);
-	*/
 }
 
 void	pushbacktoa(t_ps *ps)
@@ -183,55 +177,34 @@ void	secondhighest(t_ps *ps)
 	i = 0;
 	while (i < 2)
 	{
-			while (i == 0 && B->value != NH(BS))
+		while (i == 0 && B->value != NH(BS))
+		{
+			if(BHP(NH(BS)) > (lst_size(BS) / 2))
 			{
-				/*col_str_fd(FRED, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FRED, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FRED, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FRED, " Position of second highest value : ", 2);
-				
-				ft_nbrendl_fd(BHP(NH(BS)), 2);*/
-				if(BHP(NH(BS)) > (lst_size(BS) / 2))
-				{RULE("rrb");}
-				else {RULE("rb");}
+				RULE("rrb");
 			}
-			/*	col_str_fd(FMAG, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FMAG, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FMAG, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FMAG, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);
-			*/
-			if(i == 0 && B->value == NH(BS))
+			else
+				RULE("rb");
+		}
+		if(i == 0 && B->value == NH(BS))
+		{
+			i++;
+			RULE("pa");
+		}
+		while (i == 1 && B->value != HV(BS))
+		{
+			if(BHP(HV(BS)) > (lst_size(BS) / 2))
 			{
-				i++;
-				RULE("pa");
+				RULE("rrb");
 			}
-			while (i == 1 && B->value != HV(BS))
-			{
-				/*col_str_fd(FYEL, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FYEL, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FYEL, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FYEL, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);
-				*/
-			if(BHP(HV(BS)) > (lst_size(BS) / 2)){RULE("rrb");}
-				else {RULE("rb");}
-			}
-			if(i == 1 && B->value == HV(BS))
-			{
-				i++;
-				RULE("pa");
-			}
-			
+			else 
+				RULE("rb");
+		}
+		if(i == 1 && B->value == HV(BS))
+		{
+			i++;
+			RULE("pa");
+		}
 	}
 	while(i == 2)
 	{
@@ -240,6 +213,7 @@ void	secondhighest(t_ps *ps)
 	}
 	return ;
 }
+
 void	backtoa(t_ps *ps)
 {
 	while (B)
@@ -248,25 +222,13 @@ void	backtoa(t_ps *ps)
 		{
 			while (B->value != HV(BS))
 			{
-				/*col_str_fd(FGRN, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FGRN, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FGRN, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FGRN, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);*/
-				if(BHP(HV(BS)) > (lst_size(BS) / 2)){RULE("rrb");}
-				else {RULE("rb");}
+				if(BHP(HV(BS)) > (lst_size(BS) / 2))
+				{
+					RULE("rrb");
+				}
+				else 
+					RULE("rb");
 			}
-			/*col_str_fd(FGRN, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FGRN, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FGRN, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FGRN, " Position of second highest value : ", 2);
-			ft_nbrendl_fd(BHP(NH(BS)), 2);*/
 			RULE("pa");
 		}
 		else
@@ -279,60 +241,6 @@ void	backtoa(t_ps *ps)
 			}
 			else
 				RULE("pa");
-			/*i = 1;
-			while (B->value != NH(BS))
-			{
-				col_str_fd(FRED, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FRED, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FRED, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FRED, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);
-				RULE(BHP(NH(BS)) > (lst_size(BS) / 2) ? "rrb" : "rb");
-			}
-			col_str_fd(FRED, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FRED, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FRED, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FRED, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);
-			RULE("pa");
-			*/
-			/*while (B->value != HV(BS))
-			{
-				col_str_fd(FYEL, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FYEL, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FYEL, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FYEL, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);
-				RULE(BHP(HV(BS)) > (lst_size(BS) / 2) ? "rrb" : "rb");
-			}
-			col_str_fd(FYEL, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FYEL, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FYEL, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FYEL, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);
-			while (i++ == 0) //issue
-				RULE("pa");
-			col_str_fd(FCYN, "Highest value : ", 2);
-				ft_putnbr_fd(HV(BS), 2);
-				col_str_fd(FCYN, " Position of highest value : ", 2);
-				ft_nbrendl_fd(BHP(HV(BS)), 2);
-				col_str_fd(FCYN, "Second Highest value : ", 2);
-				ft_putnbr_fd(NH(BS), 2);
-				col_str_fd(FCYN, " Position of second highest value : ", 2);
-				ft_nbrendl_fd(BHP(NH(BS)), 2);
-			RULE("sa");*/
 		}
 	}
 }
@@ -401,12 +309,6 @@ void		partition(t_ps *ps)
 	{
 		while(i < RANGE())
 		{
-			/*if(lst_size(&ps->a) == 1)
-			{
-				//exit(1);
-				//rotate_b(ps, 0);
-				backtoa(ps);
-			}*/
 			if(A->value <= RANGE())
 			{
 				i++;
