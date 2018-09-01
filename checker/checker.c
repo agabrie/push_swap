@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 12:10:45 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/01 17:37:54 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		check_dups(char **av)
 
 void		printbothstacks(t_stackdata *a, t_stackdata *b)
 {
-	ft_putendl_fd("", 2);
+	//ft_putendl_fd("", 2);
 	col_str_fd(FCYN, CAT("Stack ", CAT(VAR(a), " : ")), 2);
 	ft_nbrendl_fd(lst_size(a), 2);
 	printstack(a->lst);

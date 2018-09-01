@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 10:57:11 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/01 18:19:50 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#define RULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);continue;}
+#define RULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);/*printbothstacks(&ps->a, &ps->b)*/;continue;}
 #define DRULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);return(1);}
+#define BS (&ps->b)
+#define AS (&ps->a)
 #define A (ps->a.lst)
 #define B (ps->b.lst)
 #define AN (ps->a.lst->next)
@@ -20,11 +22,13 @@
 #define AA (A && AN)
 #define BB (B && BN)
 #define AB (AA && BB)
-#define ABV (bottom_val(&ps->a))
-#define BBV (bottom_val(&ps->b))
+#define ABV (bottom_val(AS))
+#define BBV (bottom_val(BS))
 #define HV(stack) (highest_val(stack))
 #define LV(stack) (lowest_val(stack))
-#define RANGE() (sect * ((lst_size(&ps->a) + lst_size(&ps->b)) / parts))
+#define RANGE() (sect * ((lst_size(AS) + lst_size(BS)) / parts))
+#define BHP(value) (find_pos(BS, value))
+#define NH(stack) (highest_under(stack, HV(stack)))
 
 /*int		dtt(t_stackdata a, t_stackdata b)
 {
@@ -132,7 +136,7 @@ void	rotate_a_end(t_ps *ps)
 	*/
 }
 
-void	backtoa(t_ps *ps)
+void	pushbacktoa(t_ps *ps)
 {
 	col_endl_fd(FGRN, "pushing back", 2);
 	while (B)
@@ -163,6 +167,174 @@ void	backtoa(t_ps *ps)
 		RULE("pa");
 	}
 	rotate_a_end(ps);
+}
+
+int	moves(t_stackdata *stack, int value)
+{
+	int pos;
+	pos = find_pos(stack, value);
+
+	return (pos > lst_size(stack) / 2 ? lst_size(stack) - pos : pos);
+}
+
+void	secondhighest(t_ps *ps)
+{
+	int i;
+	i = 0;
+	while (i < 2)
+	{
+			while (i == 0 && B->value != NH(BS))
+			{
+				/*col_str_fd(FRED, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FRED, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FRED, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FRED, " Position of second highest value : ", 2);
+				
+				ft_nbrendl_fd(BHP(NH(BS)), 2);*/
+				if(BHP(NH(BS)) > (lst_size(BS) / 2))
+				{RULE("rrb");}
+				else {RULE("rb");}
+			}
+			/*	col_str_fd(FMAG, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FMAG, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FMAG, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FMAG, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);
+			*/
+			if(i == 0 && B->value == NH(BS))
+			{
+				i++;
+				RULE("pa");
+			}
+			while (i == 1 && B->value != HV(BS))
+			{
+				/*col_str_fd(FYEL, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FYEL, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FYEL, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FYEL, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);
+				*/
+			if(BHP(HV(BS)) > (lst_size(BS) / 2)){RULE("rrb");}
+				else {RULE("rb");}
+			}
+			if(i == 1 && B->value == HV(BS))
+			{
+				i++;
+				RULE("pa");
+			}
+			
+	}
+	while(i == 2)
+	{
+		i++;
+		RULE("sa");
+	}
+	return ;
+}
+void	backtoa(t_ps *ps)
+{
+	while (B)
+	{
+		if ((BB) && moves(BS, HV(BS)) < moves(BS, NH(BS)))
+		{
+			while (B->value != HV(BS))
+			{
+				/*col_str_fd(FGRN, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FGRN, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FGRN, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FGRN, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);*/
+				if(BHP(HV(BS)) > (lst_size(BS) / 2)){RULE("rrb");}
+				else {RULE("rb");}
+			}
+			/*col_str_fd(FGRN, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FGRN, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FGRN, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FGRN, " Position of second highest value : ", 2);
+			ft_nbrendl_fd(BHP(NH(BS)), 2);*/
+			RULE("pa");
+		}
+		else
+		{
+			if (lst_size(BS) > 2)
+				secondhighest(ps);
+			else if (B->value != HV(BS))
+			{
+				RULE("sb");
+			}
+			else
+				RULE("pa");
+			/*i = 1;
+			while (B->value != NH(BS))
+			{
+				col_str_fd(FRED, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FRED, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FRED, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FRED, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);
+				RULE(BHP(NH(BS)) > (lst_size(BS) / 2) ? "rrb" : "rb");
+			}
+			col_str_fd(FRED, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FRED, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FRED, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FRED, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);
+			RULE("pa");
+			*/
+			/*while (B->value != HV(BS))
+			{
+				col_str_fd(FYEL, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FYEL, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FYEL, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FYEL, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);
+				RULE(BHP(HV(BS)) > (lst_size(BS) / 2) ? "rrb" : "rb");
+			}
+			col_str_fd(FYEL, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FYEL, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FYEL, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FYEL, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);
+			while (i++ == 0) //issue
+				RULE("pa");
+			col_str_fd(FCYN, "Highest value : ", 2);
+				ft_putnbr_fd(HV(BS), 2);
+				col_str_fd(FCYN, " Position of highest value : ", 2);
+				ft_nbrendl_fd(BHP(HV(BS)), 2);
+				col_str_fd(FCYN, "Second Highest value : ", 2);
+				ft_putnbr_fd(NH(BS), 2);
+				col_str_fd(FCYN, " Position of second highest value : ", 2);
+				ft_nbrendl_fd(BHP(NH(BS)), 2);
+			RULE("sa");*/
+		}
+	}
 }
 
 void	rotate_b(t_ps *ps, int i)
@@ -229,12 +401,12 @@ void		partition(t_ps *ps)
 	{
 		while(i < RANGE())
 		{
-			if(lst_size(&ps->a) == 1)
+			/*if(lst_size(&ps->a) == 1)
 			{
-				exit(1);
-				rotate_b(ps, 0);
+				//exit(1);
+				//rotate_b(ps, 0);
 				backtoa(ps);
-			}
+			}*/
 			if(A->value <= RANGE())
 			{
 				i++;
@@ -257,10 +429,15 @@ int			main(int ac, char **av)
 	{
 		init(&ps, av, ac);
 		if (lst_size(&ps.a) < 20)
+		{
 			frankenstein(&ps);
+			pushbacktoa(&ps);
+		}
 		else
+		{
 			partition(&ps);
-		backtoa(&ps);
+			backtoa(&ps);
+		}
 		freestack(&ps.a);
 		/*else
 			partition(&ps);
