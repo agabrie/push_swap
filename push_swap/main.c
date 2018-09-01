@@ -6,7 +6,7 @@
 /*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 08:37:19 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/01 09:00:09 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,9 @@ void	frankenstein(t_ps *ps)
 
 void		partition(t_ps *ps)
 {
-
+	if(ps)
+		exit(0);
+	exit(0);
 }
 
 int			main(int ac, char **av)
