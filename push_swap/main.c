@@ -6,7 +6,7 @@
 /*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 09:00:09 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/01 10:57:11 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define BBV (bottom_val(&ps->b))
 #define HV(stack) (highest_val(stack))
 #define LV(stack) (lowest_val(stack))
+#define RANGE() (sect * ((lst_size(&ps->a) + lst_size(&ps->b)) / parts))
 
 /*int		dtt(t_stackdata a, t_stackdata b)
 {
@@ -112,7 +113,7 @@ int	checkdoublerule(t_ps *ps)
 
 void	rotate_a_end(t_ps *ps)
 {
-	while (!(check_sorted(&ps->a) == 1))
+	while (ABV != HV(&ps->a))
 	{
 		if (find_pos(&ps->a, highest_val(&ps->a)) < (lst_size(&ps->a) / 2))
 		{
@@ -123,12 +124,24 @@ void	rotate_a_end(t_ps *ps)
 			RULE("rra");
 		}
 	}
+	/*while(!(check_sorted(&ps->a) == 1))
+	{
+			RULE("pb");
+	}
+	backtoa(ps);
+	*/
 }
 
 void	backtoa(t_ps *ps)
 {
+	col_endl_fd(FGRN, "pushing back", 2);
 	while (B)
 	{
+		if (check_largest(&ps->b))
+			RULE("pa");
+		if (HV(&ps->a) < HV(&ps->b))
+			RULE("rb");
+		
 		if (A->value < HV(&ps->b))
 			RULE("ra");
 		if (!B || ((ABV > HV(&ps->b))\
@@ -207,9 +220,33 @@ void	frankenstein(t_ps *ps)
 
 void		partition(t_ps *ps)
 {
-	if(ps)
-		exit(0);
-	exit(0);
+	int parts = 5;
+	int sect = 1;
+	int i = 0;
+	if(lst_size(&ps->a) > 250)
+		parts = 10;
+	while (!(check_sorted(&ps->a) == 1))
+	{
+		while(i < RANGE())
+		{
+			if(lst_size(&ps->a) == 1)
+			{
+				exit(1);
+				rotate_b(ps, 0);
+				backtoa(ps);
+			}
+			if(A->value <= RANGE())
+			{
+				i++;
+				RULE("pb");
+			}
+			else
+			{
+				RULE("ra");
+			}
+		}
+		sect++;
+	}
 }
 
 int			main(int ac, char **av)
@@ -219,7 +256,7 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		init(&ps, av, ac);
-		if (lst_size(&ps.a) <= 20)
+		if (lst_size(&ps.a) < 20)
 			frankenstein(&ps);
 		else
 			partition(&ps);
