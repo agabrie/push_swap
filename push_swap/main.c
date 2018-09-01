@@ -6,7 +6,7 @@
 /*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 08:23:46 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/01 08:37:19 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,53 +88,6 @@
 	}
 	
 	return(!(check_sorted(&a) && !b.lst));
-}
-*/
-
-/*int rank(t_stackdata *a, t_stackdata *stack, int size)
-{
-	t_stack *head;
-	//t_stack *next;
-	head = a->lst;
-	//next = head;
-	col_endl_fd(FRED, "TRY to Normalise", 2);
-	while(head)
-	{
-		
-		if(head)
-		{
-			col_str_fd(FYEL, "Start : ", 2);
-			ft_putnbr_fd(stack->lst->value, 2);
-			col_str_fd(FYEL, " vs node:", 2);
-			ft_nbrendl_fd(head->value, 2);
-		}
-		if(head->next && stack->lst->value < head->value)
-		{
-			col_endl_fd(FGRN, "RANK decrease", 2);
-			size--;
-		}
-		head = head->next;
-	}
-	return(size);
-}
-*/
-
-/*void normalise(t_stackdata *a)
-{
-	int size = lst_size(a);
-	t_stackdata *head;
-	// = a->lst;
-	head = malloc(sizeof(t_stack));
-	while(lst_size(head) < lst_size(a))
-		push(head, size);
-	t_stackdata *temp;
-	temp = a;
-	while(head)
-	{
-		head->lst->value = rank(a,temp, size);
-		temp->lst = temp->lst->next;
-		head->lst = head->lst->next;
-	}
 }
 */
 
@@ -252,6 +205,11 @@ void	frankenstein(t_ps *ps)
 	}
 }
 
+void		partition(t_ps *ps)
+{
+
+}
+
 int			main(int ac, char **av)
 {
 	t_ps		ps;
@@ -261,6 +219,8 @@ int			main(int ac, char **av)
 		init(&ps, av, ac);
 		if (lst_size(&ps.a) <= 20)
 			frankenstein(&ps);
+		else
+			partition(&ps);
 		backtoa(&ps);
 		freestack(&ps.a);
 		/*else
