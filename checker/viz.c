@@ -6,11 +6,10 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 13:37:13 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 14:50:30 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/02 18:01:28 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "checker.h"
 #define WHITEAF 0x00FFFFFF
 void    draw_rectangle(t_vis *vis, t_point *start, t_point *end)
@@ -30,29 +29,84 @@ void    draw_rectangle(t_vis *vis, t_point *start, t_point *end)
     }
 }
 
-void    draw_frames(t_vis *vis)
+void    drawsolidrect(t_point *start, t_point *end, t_vis *vis)
+{
+    int x;
+    int y;
+
+    y = start->y;
+    while(y >= end->y)
+    {
+        x = start->x;
+        while(x <= end->x)
+        {
+            mlx_pixel_put(vis->gsci, vis->win, x, y, WHITEAF);
+            x++;
+        }
+        y--;
+    }
+}
+
+void    drawbars(t_point *start, t_point *end, t_stackdata *stack, t_vis *vis)
+{
+    t_point strt;
+    t_point nd;
+    t_stack *head;
+    
+    if(!stack->lst)
+        return ;
+    head = stack->lst;
+    //strt = set_point(400, 10);
+    //nd = set_point(200, 80);
+    strt = set_point(end->y - 2, start->x + 2);
+    nd = set_point(strt.y - vis->lv/vis->ls * vis->gsy, strt.x + vis->bs.x);
+    //while(head)
+    //{
+      //  vis->lv = head->value;
+       // col_str_fd(FYEL, "value of bar : ", 2);
+        //ft_nbrendl_fd(vis->lv, 2);
+        //strt = set_point(end->y - 2, start->x + 2);
+        //nd = set_point(strt.y - vis->lv/vis->ls * vis->gsy, strt.x + vis->bs.x);
+        drawsolidrect(&strt, &nd, vis);
+       // head = head->next;
+    //}
+}
+
+void    draw_frames(t_vis *vis, t_ps *ps)
 {
     t_point start;
     t_point end;
-    start = set_point(2, 2);
-    end = set_point(vis->fr.y + 2, vis->fr.x + 2);
+
+    start = set_point(4, 4);
+    end = set_point(vis->fr.y + 4, vis->fr.x + 4);
     draw_rectangle(vis, &start, &end);
+    drawbars(&start, &end, &ps->a, vis);
+    start = set_point(start.y , end.x + vis->sbf);
+    end = set_point(end.y, start.x + vis->fr.x);
+    draw_rectangle(vis, &start, &end);
+    //drawbars(&start, &end, &ps->b, vis);
 }
 
-void    draw_bars_a()
+/*void    draw_bars_a(t_ps *ps, )
 {
-
+    t_point start;
+    t_point end;
+    start = set_point(4, 4);
+    end = set_point(vis->fr.y + 4, vis->fr.x + 4);
+    draw_rectangle(vis, &start, &end);
+    if(ps)
+        return ;
+    return ;
 }
 
 void    draw_bars_b()
 {
-
+    return ;
 }
-
+*/
 void    draw_graph(t_vis *vis, t_ps *ps)
 {
-    if(ps->a.lst)
-        return ;
-    return ;
     mlx_clear_window(vis->gsci, vis->win);
+    draw_frames(vis, ps);
+   // draw_bars_a(ps);
 }

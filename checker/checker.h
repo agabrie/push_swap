@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 13:56:20 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/02 16:03:24 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CHECKER_H
 # include <stdlib.h>
 # include <stdio.h>
+# include <mlx.h>
 # include "../libft/libft.h"
 # define MIN -2147483648
 # define MAX 2147483647
@@ -25,6 +26,7 @@
 # define ERR() (col_endl_fd(FRED, "Error", 1), exit(0))
 # define CAT(A, B) A B
 # define ARRLEN(args, ac) ac = 0;while(args[ac])ac++;ac++;
+# define CHECKNUM() if(!ft_isnum(args[ac - (i + 1)]))ERR();
 
 typedef struct	s_stack
 {
@@ -83,6 +85,7 @@ void			pb(t_stackdata *a, t_stackdata *b);
 void			rb(t_stackdata *b);
 void			rrb(t_stackdata *b);
 void			check_dups(char **av);
+void			initialise(t_ps *ps);
 void			init(t_ps *ps, char **av, int ac);
 void			freestack(t_stackdata *stack);
 int				lst_size(t_stackdata *stack);
