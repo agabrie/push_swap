@@ -6,7 +6,7 @@
 /*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 07:17:07 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/02 08:57:48 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,13 +134,12 @@ void	pushbacktoa(t_ps *ps)
 {
 	while (B)
 	{
-		if (check_largest(&ps->b))
-			RULE("pa");
 		if (HV(&ps->a) < HV(&ps->b))
-			RULE("rb");
-		
+			RULE("rb");	
 		if (A->value < HV(&ps->b))
 			RULE("ra");
+		if (check_largest(&ps->b) && B->value > LV(AS))
+			RULE("pa");
 		if (!B || ((ABV > HV(&ps->b))\
 		&& (ABV < A->value)))
 			RULE("rra");
@@ -343,12 +342,12 @@ void		partition(t_ps *ps)
 	int i = 0;
 	if(lst_size(&ps->a) > 250)
 		parts = 10;
-	while (!(check_sorted(&ps->a) == 1))
+	while (/*!(check_sorted(&ps->a) == 1) &&*/ sect <= parts)
 	{
 		while(i < RANGE())
 		{
-			/*if((BB) && B->value < BN->value && A->value > AN->value)
-				RULE("ss");*/
+			//if((BB) && B->value < BN->value && A->value > AN->value)
+			//	RULE("ss");
 			if(A->value <= RANGE())
 			{
 				i++;
@@ -356,12 +355,12 @@ void		partition(t_ps *ps)
 			}
 			else
 			{
-				//if(closest_in_range(BS, (lst_size(AS)+lst_size(BS)), sect, parts) > 0)
-				//{
+				if(closest_in_range(BS, (lst_size(AS)+lst_size(BS)), sect, parts) > 0)
+				{
+					RULE("rra");
+				}
+				else
 					RULE("ra");
-			//	}
-			//	else
-			//		RULE("rra");
 			}
 		}
 		sect++;
@@ -383,158 +382,11 @@ int			main(int ac, char **av)
 		else
 		{
 			partition(&ps);
+	//		exit(0);
 			backtoa(&ps);
 		}
 		freestack(&ps.a);
-		/*else
-			partition(&ps);
-		*/
-		/*int highest = highest_val(&ps.a);
-		int lowest = lowest_val(&ps.a);
-		while(!(check_sorted(&ps.a) == 1))
-		{
-			//ft_nbrendl_fd((highest_val(&ps.a)+lowest_val(&ps.a))/3 * 2, 2);
-			if(lst_size(&ps.a) > ((highest+lowest)/3))
-			{
-				if((ps.a.lst && ps.a.lst->next) && ps.a.lst->value > ((highest+lowest)/3 * 2))
-				{
-					col_endl_fd(FRED, "TOP 50\%", 2);
-					RULE("ra");
-				}
-			}
-			if ((ps.b.lst && ps.b.lst->next && ps.a.lst && ps.a.lst->next) && (ps.b.lst->next->value > ps.b.lst->value) && (ps.a.lst->value > ps.a.lst->next->value) && (ps.a.lst->value < bottom_val(&ps.a)))
-			{
-				col_endl_fd(FRED, "ss1", 2);
-				RULE("ss");
-			}
-				if ((ps.b.lst && ps.b.lst->next && ps.a.lst && ps.a.lst->next) && (ps.b.lst->next->value < ps.b.lst->value) && (ps.a.lst->value < ps.a.lst->next->value) && (ps.a.lst->next->value > bottom_val(&ps.a)) && (bottom_val(&ps.b) > ps.b.lst->next->value))
-			{
-				col_endl_fd(FRED, "ss2", 2);
-				RULE("ss");
-			}
-			if ((ps.b.lst && ps.b.lst->next && ps.a.lst && ps.a.lst->next) && (ps.b.lst->value < bottom_val(&ps.b)) && (ps.a.lst->value > bottom_val(&ps.a)))
-			{
-				col_endl_fd(FRED, "rr1", 2);
-				RULE("rr");
-			}
-			if((ps.a.lst && ps.a.lst->next) && (ps.a.lst->value > bottom_val(&ps.a)))
-			{
-				col_endl_fd(FRED, "ra1", 2);
-				RULE("ra");
-			}
-			
-			if ((ps.a.lst && ps.a.lst->next) &&(ps.a.lst->value > ps.a.lst->next->value) && (ps.a.lst->value < bottom_val(&ps.a)))
-			{
-				col_endl_fd(FRED, "sa1", 2);
-				RULE("sa");
-			}
-			if ((ps.b.lst && ps.b.lst->next) && (ps.b.lst->value < bottom_val(&ps.b)))
-			{
-				col_endl_fd(FRED, "rb1", 2);
-				RULE("rb");
-			}
-			if ((ps.b.lst && ps.b.lst->next) && (ps.b.lst->next->value > ps.b.lst->value))
-			{
-				col_endl_fd(FRED, "sb1", 2);
-				RULE("sb");
-			}
-			if((ps.a.lst && ps.a.lst->next) && (bottom_val(&ps.a)<ps.a.lst->value) && (bottom_val(&ps.a) < ps.a.lst->next->value))
-			{
-				col_endl_fd(FRED, "rra1", 2);
-				RULE("rra");
-			}
-			if ((ps.a.lst && ps.a.lst->next) && (ps.a.lst->next->value > ps.a.lst->value) && (ps.a.lst->next->value > bottom_val(&ps.a)))
-			{
-				col_endl_fd(FRED, "sa2", 2);
-				RULE("sa");
-			}
-			*/
-			/*if ((ps.b.lst && ps.b.lst->next) && (ps.b.lst->value < bottom_val(&ps.b)))
-			{
-				col_endl_fd(FRED, "rb1", 2);
-				RULE("rb");
-			}*/
-			/*
-			if((ps.a.lst && ps.b.lst && ps.b.lst->next) && ps.a.lst->value < highest_val(&ps.b) && ps.a.lst->value > lowest_val(&ps.b))
-			{
-				//col_endl_fd(FRED, "rotate b1", 2);
-				int a;
-				a = highest_under(&ps.b, ps.a.lst->value);
-				ft_nbrendl_fd(a, 2);
-				ft_nbrendl_fd(find_pos(&ps.b, a), 2);
-				if(find_pos(&ps.b, a) < lst_size(&ps.b)/2)
-				{
-					col_endl_fd(FRED, "rotate b2", 2);
-					while(highest_under(&ps.b, ps.a.lst->value) != ps.b.lst->value)
-					{
-						RULE("rb");
-					}
-				}
-				else
-				{
-					col_endl_fd(FRED, "rotate b3", 2);
-					while(highest_under(&ps.b, ps.a.lst->value) != ps.b.lst->value)
-					{
-						RULE("rrb");
-					}
-				}
-			}
-			col_endl_fd(FRED, "pb10", 2);
-			RULE("pb");
-		}
-		col_endl_fd(FGRN, "SORTED A", 2);
-		//printbothstacks(&ps.a, &ps.b);
-		exit(1);
-		while (ps.b.lst)
-		{
-			if (ps.a.lst->value < highest_val(&ps.b))
-			{
-				col_endl_fd(FRED, "second1", 2);
-				RULE("ra");
-			}
-			if (!ps.b.lst || ((bottom_val(&ps.a) > highest_val(&ps.b))\
-			&& (bottom_val(&ps.a) < ps.a.lst->value)))
-			{
-				col_endl_fd(FRED, "second2", 2);
-				RULE("rra");
-			}
-			if (highest_val(&ps.b) != ps.b.lst->value)
-			{
-
-				if (find_pos(&ps.b, highest_val(&ps.b)) < (lst_size(&ps.a) / 2))
-				{
-					while(highest_val(&ps.b) != ps.b.lst->value)
-					{
-						col_endl_fd(FRED, "second3", 2);
-						RULE("rb");
-					}
-				}
-				else
-				{
-					while(highest_val(&ps.b) != ps.b.lst->value)
-					{
-						col_endl_fd(FRED, "second4", 2);
-						RULE("rrb");
-					}
-				}
-			}
-			col_endl_fd(FRED, "second5", 2);
-			RULE("pa");
-		}
-		col_endl_fd(FGRN, "PUSHED TO A", 2);
-		while(!(check_sorted(&ps.a) == 1))
-		{
-			if (find_pos(&ps.a, highest_val(&ps.a)) < (lst_size(&ps.a) / 2))
-			{
-				col_endl_fd(FRED, "third1", 2);
-				RULE("ra");
-			}
-			else
-			{
-				col_endl_fd(FRED, "third2", 2);
-				RULE("rra");
-			}
-		}*/
+		
 	}
 	exit(0);
 }
