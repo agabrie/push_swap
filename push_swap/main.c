@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 09:47:01 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/02 13:48:30 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,29 +320,29 @@ int	closest_in_range(t_stackdata *stack, int size, int sect, int parts)
 }
 void		partition(t_ps *ps)
 {
-	int parts = 4;
-	int sect = 1;
-	int i = 0;
-	if(lst_size(&ps->a) > 250)
-		parts = 10;
-	while (/*!(check_sorted(&ps->a) == 1) &&*/ sect <= parts)
+	int parts;
+	int sect;
+	int i;
+
+	i = 0;
+	sect = 1;
+	parts = (lst_size(&ps->a) > 250 ? 10 : 4);
+	while (sect <= parts)
 	{
-		while(i < RANGE())
+		while (i < RANGE())
 		{
-			//if((BB) && B->value < BN->value && A->value > AN->value)
-			//	RULE("ss");
-			if(A->value <= RANGE())
+			if (A->value <= RANGE())
 			{
 				i++;
 				RULE("pb");
 			}
 			else
 			{
-				if(closest_in_range(BS, (lst_size(AS)+lst_size(BS)), sect, parts) > 0)
+				/*if (closest_in_range(BS, (lst_size(AS)+lst_size(BS)), sect, parts) > 0)
 				{
 					RULE("rra");
 				}
-				else
+				else*/
 					RULE("ra");
 			}
 		}
@@ -357,12 +357,12 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		init(&ps, av, ac);
-		if (lst_size(&ps.a) < 5)
+		if (lst_size(&ps.a) < 20)
 		{
 			frankenstein(&ps);
 			backtoa(&ps);
 		}
-		else if(lst_size(&ps.a) < 50)
+		else if (lst_size(&ps.a) < 50)
 		{
 			dtt(&ps);
 			backtoa(&ps);
@@ -370,11 +370,9 @@ int			main(int ac, char **av)
 		else
 		{
 			partition(&ps);
-	//		exit(0);
 			backtoa(&ps);
 		}
 		freestack(&ps.a);
-		
 	}
 	exit(0);
 }

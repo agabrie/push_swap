@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 07:13:45 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/02 13:56:20 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 typedef struct	s_stack
 {
 	int				value;
-	int				size;
+	//int				size;
 	struct s_stack	*next;
 }				t_stack;
 
@@ -43,8 +43,24 @@ typedef struct	s_ps
 {
 	t_stackdata	a;
 	t_stackdata	b;
+	int			size;
 	int			debug;
 }				t_ps;
+
+typedef struct	s_vis
+{
+	void	*gsci;
+	void	*win;
+	t_point ws;
+	t_point fr;
+	t_point bs;
+	int 	ls;
+	int		lv;
+	int		gsxt;
+	int		gsxa;
+	int		gsy;
+	int		sbf;
+}				t_vis;
 
 t_stack			*new_node(int value);
 int				pop(t_stackdata *list);
@@ -71,4 +87,5 @@ void			init(t_ps *ps, char **av, int ac);
 void			freestack(t_stackdata *stack);
 int				lst_size(t_stackdata *stack);
 int				longest_int(t_stack *stack);
+void    		draw_graph(t_vis *vis, t_ps *ps);
 #endif

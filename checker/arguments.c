@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 08:34:59 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/02 14:10:16 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	initialise(t_ps *ps)
 	ps->b.size = 0;
 	ps->a.lst = NULL;
 	ps->b.lst = NULL;
+	ps->size = (lst_size(&ps->a) + lst_size(&ps->b));
 }
 
 void	init(t_ps *ps, char **av, int ac)
