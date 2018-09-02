@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 16:03:24 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/02 21:15:14 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ typedef struct	s_vis
 	int		gsy;
 	int		sbf;
 }				t_vis;
+
+typedef struct	s_psv
+{
+	t_ps *ps;
+	t_vis *vis;
+}				t_psv;
 
 t_stack			*new_node(int value);
 int				pop(t_stackdata *list);

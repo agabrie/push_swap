@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 13:37:13 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 18:01:28 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/02 22:05:24 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,41 @@ void    drawbars(t_point *start, t_point *end, t_stackdata *stack, t_vis *vis)
         return ;
     head = stack->lst;
     //strt = set_point(400, 10);
-    //nd = set_point(200, 80);
-    strt = set_point(end->y - 2, start->x + 2);
-    nd = set_point(strt.y - vis->lv/vis->ls * vis->gsy, strt.x + vis->bs.x);
-    //while(head)
-    //{
-      //  vis->lv = head->value;
+    //nd = set_point(200, 80); 
+    /*strt = set_point(end->y - 2, start->x + 2);
+    col_str_fd(FYEL, "strt stuff : ", 2);
+    ft_nbrendl_fd(strt.y, 2);
+    col_str_fd(FYEL, "lv stuff : ", 2);
+    ft_nbrendl_fd(vis->lv, 2);
+    col_str_fd(FYEL, "ls stuff : ", 2);
+    ft_nbrendl_fd(vis->ls, 2);
+    col_str_fd(FYEL, "gsy stuff : ", 2);
+    ft_nbrendl_fd(vis->gsy, 2);
+    ft_putchar_fd('\n', 2);
+    */
+    //nd = set_point(head->value * vis->bs.x, strt.x + vis->bs.x);
+    int i;
+    i = 0;
+   while(head)
+    {
+        vis->lv = head->value;
        // col_str_fd(FYEL, "value of bar : ", 2);
         //ft_nbrendl_fd(vis->lv, 2);
-        //strt = set_point(end->y - 2, start->x + 2);
-        //nd = set_point(strt.y - vis->lv/vis->ls * vis->gsy, strt.x + vis->bs.x);
+        
+        strt = set_point(end->y - 2, start->x + 2 + i);
+        nd = set_point(strt.y - head->value * vis->bs.x, strt.x + vis->bs.x);
+        col_str_fd(FCYN, "head value : ", 2);
+        ft_nbrendl_fd(head->value, 2);
+        col_str_fd(FCYN, "start coords : ", 2);
+        put_coords_fd(&strt, 2);
+        col_str_fd(FCYN, "end coords :   ", 2);
+        put_coords_fd(&nd, 2);
         drawsolidrect(&strt, &nd, vis);
-       // head = head->next;
-    //}
+      //  return ;
+        head = head->next;
+        i += vis->bs.x;
+    }
+    ft_putchar_fd('\n', 2);
 }
 
 void    draw_frames(t_vis *vis, t_ps *ps)
