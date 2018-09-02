@@ -6,7 +6,7 @@
 /*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 21:57:47 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/02 07:17:07 by zee              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ void	rotate_a_end(t_ps *ps)
 
 void	pushbacktoa(t_ps *ps)
 {
-	col_endl_fd(FGRN, "pushing back", 2);
 	while (B)
 	{
 		if (check_largest(&ps->b))
@@ -220,14 +219,21 @@ void	backtoa(t_ps *ps)
 	{
 		if ((BB) && moves(BS, HV(BS)) < moves(BS, NH(BS)))
 		{
+
 			while (B->value != HV(BS))
 			{
 				if(BHP(HV(BS)) > (lst_size(BS) / 2))
 				{
 					RULE("rrb");
 				}
-				else 
+				else
+				{
+					/*if(BHP(HV(BS)) == 1 && BHP(NH(BS)) != 2)
+					{
+						RULE("sb");
+					}*/
 					RULE("rb");
+				}
 			}
 			RULE("pa");
 		}
@@ -298,9 +304,41 @@ void	frankenstein(t_ps *ps)
 	}
 }
 
+int	closest_in_range(t_stackdata *stack, int size, int sect, int parts)
+{
+	int closest_top;
+	int closest_bottom;
+	t_stack *top;
+	int pos_top;
+	int pos_bot;
+
+	if(stack->lst)
+		top = stack->lst;
+	else
+		return (MIN);
+	while(top)
+	{
+		if (top->value < sect*(size/parts))
+		{
+			closest_top = top->value;
+			closest_bottom = top->value;
+			break;
+		}
+		top = top->next;
+	}
+	while(top)
+	{
+		if (top->value < sect*(size/parts))
+			closest_bottom = top->value;
+		top = top->next;
+	}
+	pos_top = moves(stack, closest_top);
+	pos_bot = moves(stack, closest_bottom);
+		return (pos_top < pos_bot ? pos_top : -pos_bot);
+}
 void		partition(t_ps *ps)
 {
-	int parts = 5;
+	int parts = 4;
 	int sect = 1;
 	int i = 0;
 	if(lst_size(&ps->a) > 250)
@@ -309,6 +347,8 @@ void		partition(t_ps *ps)
 	{
 		while(i < RANGE())
 		{
+			/*if((BB) && B->value < BN->value && A->value > AN->value)
+				RULE("ss");*/
 			if(A->value <= RANGE())
 			{
 				i++;
@@ -316,7 +356,12 @@ void		partition(t_ps *ps)
 			}
 			else
 			{
-				RULE("ra");
+				//if(closest_in_range(BS, (lst_size(AS)+lst_size(BS)), sect, parts) > 0)
+				//{
+					RULE("ra");
+			//	}
+			//	else
+			//		RULE("rra");
 			}
 		}
 		sect++;
