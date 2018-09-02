@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 21:57:44 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/02 22:13:01 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,10 @@ int	vcheck(t_psv *psv)
 
 	if (g_n_l(0, line) > 0)
 	{
-		if(!moves)
+		/*if(!moves)
 		{
 			while(1){}
-		}
+		}*/
 		rule(&ps->a, &ps->b, *line, ps->debug);
 		if(ps->size < 1274)
 				draw_graph(vis, ps);
