@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 08:57:48 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/02 09:47:01 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,71 +30,54 @@
 #define BHP(value) (find_pos(BS, value))
 #define NH(stack) (highest_under(stack, HV(stack)))
 
-/*int		dtt(t_stackdata a, t_stackdata b)
+void		dtt(t_ps *ps)
 {
-	while(!(check_sorted(&a) == 1))
+	while(!(check_sorted(AS) == 1))
 	{
-		if ((b.lst && b.lst->next && a.lst && a.lst->next) && (b.lst->next->value > b.lst->value) && (a.lst->value > a.lst->next->value) && (a.lst->value < bottom_val(&a)))
+		if ((AB) && (BN->value > B->value) && (A->value > AN->value) && (A->value < ABV))
 		{
 			col_endl_fd(FRED, "first1", 2);
 			RULE("ss");
 		}
-		if ((b.lst && b.lst->next && a.lst && a.lst->next) && (b.lst->next->value < b.lst->value) && (a.lst->value < a.lst->next->value) && (a.lst->next->value > bottom_val(&a)) && (bottom_val(&b) > b.lst->next->value))
+		if ((AB) && (BN->value < B->value) && (A->value < AN->value) && (AN->value > ABV) && (BBV > BN->value))
 		{
 			col_endl_fd(FRED, "first2", 2);
 			RULE("ss");
 		}
-		if ((b.lst && b.lst->next && a.lst && a.lst->next) && (b.lst->value < bottom_val(&b)) && (a.lst->value > bottom_val(&a)))
+		if ((AB) && (B->value < BBV) && (A->value > ABV))
 		{
 			col_endl_fd(FRED, "first3", 2);
 			RULE("rr");
 		}
-		if ((a.lst && a.lst->next) &&(a.lst->value > a.lst->next->value) && (a.lst->value < bottom_val(&a)))
+		if ((AA) &&(A->value > AN->value) && (A->value < ABV))
 		{
 			col_endl_fd(FRED, "first4", 2);
 			RULE("sa");
 		}
-		if ((b.lst && b.lst->next) && (b.lst->next->value > b.lst->value))
+		if ((BB) && (BN->value > B->value))
 		{
 			col_endl_fd(FRED, "first5", 2);
 			RULE("sb");
 		}
-		if ((a.lst && a.lst->next) &&(a.lst->next->value > a.lst->value) && (a.lst->next->value > bottom_val(&a)))
+		if ((AA) &&(AN->value > A->value) && (AN->value > ABV))
 		{
 			col_endl_fd(FRED, "first6", 2);
 			RULE("sa");
 		}
-		if ((b.lst && b.lst->next) && (b.lst->value < bottom_val(&b)))
+		if ((BB) && (B->value < BBV))
 		{
 			col_endl_fd(FRED, "first7", 2);
 			RULE("rb");
 		}
-		if((a.lst && a.lst->next) && (a.lst->value > bottom_val(&a)))
+		if((AA) && (A->value > ABV))
 		{
 			col_endl_fd(FRED, "first8", 2);
 			RULE("ra");
 		}
 		RULE("pb");
 	}
-	if(b.lst)
-	{
-		if (a->lst->value < highestB)
-			RULE("ra");
-		if(!b||(bottomval(a) > highestB) && (bottomval(a) < a->lst->value))
-			RULE("rra");
-		if (highestB != b->lst->value)
-		{
-			if(HighestPosB < stack_b_size/2)
-				RULE("rb");
-			else
-				RULE("rrb");
-		}
-		RULE("pa");
-	}
-	
-	return(!(check_sorted(&a) && !b.lst));
 }
-*/
+
 
 int	checkdoublerule(t_ps *ps)
 {
@@ -374,10 +357,15 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		init(&ps, av, ac);
-		if (lst_size(&ps.a) < 20)
+		if (lst_size(&ps.a) < 5)
 		{
 			frankenstein(&ps);
-			pushbacktoa(&ps);
+			backtoa(&ps);
+		}
+		else if(lst_size(&ps.a) < 50)
+		{
+			dtt(&ps);
+			backtoa(&ps);
 		}
 		else
 		{

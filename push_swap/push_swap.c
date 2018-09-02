@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 15:00:48 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/02 09:44:43 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		check_sorted(t_stackdata *a)
 	head = a->lst;
 	while (head && head->next)
 	{
-		if (head->value < head->next->value)
+		if (head->value < head->next->value && (head->next->value - head->value == 1))
 			head = head->next;
 		else
             if (check_inverted(a))
