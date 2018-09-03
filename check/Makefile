@@ -6,13 +6,13 @@
 #    By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/15 08:15:41 by agabrie           #+#    #+#              #
-#    Updated: 2018/09/03 11:36:54 by agabrie          ###   ########.fr        #
+#    Updated: 2018/09/03 11:46:11 by agabrie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= checker.a
 
-CNAME	= ../check
+CNAME	= ../checker
 
 SRCS	= stack_ops.c a_ops.c b_ops.c both_ops.c checker.c arguments.c viz.c\
 		  vizinit.c normalise.c
@@ -54,4 +54,4 @@ ccompile:
 		@make re -C ../libft
 		@$(GCC) main.c $(NAME) $(LIBFT) -lmlx $(FRWORK) -o $(CNAME)
 
-check: all ccompile libclean clean
+ch: all ccompile libclean clean

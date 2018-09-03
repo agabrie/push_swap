@@ -6,13 +6,13 @@
 #    By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/15 08:15:41 by agabrie           #+#    #+#              #
-#    Updated: 2018/09/03 11:36:29 by agabrie          ###   ########.fr        #
+#    Updated: 2018/09/03 11:44:32 by agabrie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap.a
 
-CNAME	=	../pswap
+CNAME	=	../push_swap
 
 SRCS	=	stack_ops.c a_ops.c b_ops.c both_ops.c push_swap.c arguments.c \
 			values.c extra.c extra2.c algorithm.c
@@ -21,7 +21,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 LIBFT	=	../libft/libft.a
 
-GCC		=	gcc -Wall -Werror -Wextra
+GCC		=	gcc -Wall -Werror -Wextra -g
 
 all : $(NAME)
 

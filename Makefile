@@ -6,48 +6,48 @@
 #    By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/03 11:21:00 by agabrie           #+#    #+#              #
-#    Updated: 2018/09/03 11:31:47 by agabrie          ###   ########.fr        #
+#    Updated: 2018/09/03 11:47:44 by agabrie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
-	@make all -C push_swap
-	@make all -C checker
+	@make all -C pswap
+	@make all -C check
 
 re:
-	@make re -C push_swap
-	@make re -C checker
+	@make re -C pswap
+	@make re -C check
 
 clean:
-	@make clean -C push_swap
-	@make clean -C checker
+	@make clean -C pswap
+	@make clean -C check
 
 fclean:
-	@make fclean -C push_swap
-	@make fclean -C checker
+	@make fclean -C pswap
+	@make fclean -C check
 
 pcompile:
-	@make pcompile -C push_swap
+	@make pcompile -C pswap
 
 ccompile:
-	@make ccompile -C checker
+	@make ccompile -C check
 
 libclean:
-	@make libclean -C push_swap
-	@make libclean -C checker
+	@make libclean -C pswap
+	@make libclean -C check
 
 psclean:
-	@make psclean -C push_swap
+	@make psclean -C pswap
 
 checkerclean:
-	@make checkerclean -C checker
+	@make checkerclean -C check
 
 allclean:
-	@make allclean -C push_swap
-	@make allclean -C checker
+	@make allclean -C pswap
+	@make allclean -C check
 
 ps:
-	@make ps -C push_swap
+	@make ps -C pswap
 
-check:
-	@make check -C checker
+ch:
+	@make ch -C check
