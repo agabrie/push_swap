@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/31 10:42:36 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 10:10:50 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,7 @@ void		rule(t_stackdata *a, t_stackdata *b, char *line)
 	else if (ft_strequ(line, "rrr"))
 		rrr(a, b);
 	else
-	{
-		if(ft_strequ(line, ""))
-			col_endl_fd(FYEL, "THIS HERE IS NOT FOR THE PROGRAM ITSELF 2", 2);
-		else
-			col_endl_fd(FYEL, line, 2);
 		MESSAGE("ERROR", FRED);
-	}
-	//printbothstacks(a, b);
 }
 
 void		windows_tests(t_stackdata *a, t_stackdata *b)
@@ -56,7 +49,7 @@ void		windows_tests(t_stackdata *a, t_stackdata *b)
 	rule(a, b, "pa");
 }
 
-void	initialise(t_ps *ps)
+void		initialise(t_ps *ps)
 {
 	ps->debug = 0;
 	ps->a.size = 0;
@@ -85,9 +78,7 @@ void		init(t_ps *ps, char **av, int ac)
 	while (ac - (i + 1) >= (0) && ac - (i + 1) < ac)
 	{
 		if (!ft_isnum(args[ac - (i + 1)]))
-		{
 			ERR();
-		}
 		push(&ps->a, ft_atoi(args[ac - (i + 1)]));
 		i++;
 	}

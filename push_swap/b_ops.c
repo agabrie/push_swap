@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:07:09 by agabrie           #+#    #+#             */
-/*   Updated: 2018/08/30 13:10:38 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 10:05:54 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void		sb(t_stackdata *b)
 		b->lst = b->lst->next;
 		temp->next = b->lst->next;
 		b->lst->next = temp;
-		//ft_putendl_fd("sb", 1);
 	}
 	return ;
-	
 }
 
 void		pb(t_stackdata *a, t_stackdata *b)
@@ -39,7 +37,6 @@ void		pb(t_stackdata *a, t_stackdata *b)
 		return ;
 	temp->next = b->lst;
 	b->lst = temp;
-	//ft_putendl_fd("pb", 1);
 }
 
 void		rb(t_stackdata *b)
@@ -49,24 +46,24 @@ void		rb(t_stackdata *b)
 
 	head = b->lst;
 	temp = b->lst;
-	if(b->lst && b->lst->next)
+	if (b->lst && b->lst->next)
 		b->lst = b->lst->next;
 	else
 		return ;
-	if(temp->value > MIN)
+	if (temp->value > MIN)
 	{
-		while(head->next)
+		while (head->next)
 			head = head->next;
 		head->next = temp;
 		temp->next = NULL;
 	}
-	//ft_putendl_fd("rb", 1);
 }
 
 void		rrb(t_stackdata *b)
 {
 	t_stack *head;
 	t_stack *temp;
+
 	if (b->lst && b->lst->next)
 	{
 		head = b->lst;
@@ -82,5 +79,4 @@ void		rrb(t_stackdata *b)
 		b->lst->next = temp;
 		head->next = NULL;
 	}
-	//ft_putendl_fd("rrb", 1);
 }

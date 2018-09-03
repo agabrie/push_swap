@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   values.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zee <zee@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 14:13:18 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/01 23:16:34 by zee              ###   ########.fr       */
+/*   Updated: 2018/09/03 10:27:56 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	bottom_val(t_stackdata *stack)
+int				bottom_val(t_stackdata *stack)
 {
 	t_stack *head;
 
@@ -22,7 +22,7 @@ int	bottom_val(t_stackdata *stack)
 	return (head->value);
 }
 
-int	lst_size(t_stackdata *stack)
+int				lst_size(t_stackdata *stack)
 {
 	t_stack *head;
 	int		i;
@@ -37,7 +37,7 @@ int	lst_size(t_stackdata *stack)
 	return (i);
 }
 
-int	lowest_val(t_stackdata *stack)
+int				lowest_val(t_stackdata *stack)
 {
 	t_stack	*head;
 	int		smallest;
@@ -53,7 +53,7 @@ int	lowest_val(t_stackdata *stack)
 	return (smallest);
 }
 
-int	highest_val(t_stackdata *stack)
+int				highest_val(t_stackdata *stack)
 {
 	t_stack	*head;
 	int		biggest;
@@ -69,7 +69,7 @@ int	highest_val(t_stackdata *stack)
 	return (biggest);
 }
 
-int	highest_under(t_stackdata *stack, int val)
+int				highest_under(t_stackdata *stack, int val)
 {
 	t_stack *head;
 	int		biggest;
@@ -84,69 +84,4 @@ int	highest_under(t_stackdata *stack, int val)
 		head = head->next;
 	}
 	return (biggest);
-}
-
-int	find_pos(t_stackdata *stack, int value)
-{
-	t_stack	*head;
-	int		i;
-
-	i = 0;
-	head = stack->lst;
-	while (head->value != value)
-	{
-		i++;
-		head = head->next;
-	}
-	return (i);
-}
-
-void	freestack(t_stackdata *stack)
-{
-	while (stack->lst)
-	{
-		free(stack->lst);
-		stack->lst = stack->lst->next;
-	}
-	free(stack->lst);
-}
-
-t_stackdata	normalise(t_stackdata *temp, int size, t_stackdata *a)
-{
-	t_stack	*head;
-	t_stack	*node;
-	int		i;
-	int		j;
-	t_stack	*temphold;
-
-	i = 0;
-	temphold = temp->lst;
-	while (i++ < size)
-	{
-		j = 1;
-		head = a->lst;
-		node = a->lst;
-		while (j++ < i)
-			node = node->next;
-		while (head)
-		{
-			if (head->value > node->value)
-				temphold->value--;
-			head = head->next;
-		}
-		temphold = temphold->next;
-	}
-	freestack(a);
-	return (*temp);
-}
-
-void	temp_stack(t_stackdata *temp, int size)
-{
-	int i;
-
-	i = 0;
-	temp->lst = NULL;
-	while (i++ < size)
-		push(temp, size);
-	temp->size = lst_size(temp);
 }
