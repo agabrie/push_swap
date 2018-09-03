@@ -6,7 +6,7 @@
 #    By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/15 08:15:41 by agabrie           #+#    #+#              #
-#    Updated: 2018/08/25 14:16:06 by agabrie          ###   ########.fr        #
+#    Updated: 2018/09/03 11:16:02 by agabrie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	push_swap.a
 CNAME	=	../pswap
 
 SRCS	=	stack_ops.c a_ops.c b_ops.c both_ops.c push_swap.c arguments.c \
-			values.c
+			values.c extra.c extra2.c algorithm.c
 
 OBJS	=	$(SRCS:.c=.o)
 

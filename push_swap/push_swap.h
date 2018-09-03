@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/03 10:30:04 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:15:22 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,18 @@ int				lowest_val(t_stackdata *stack);
 int				highest_val(t_stackdata *stack);
 int				highest_under(t_stackdata *stack, int val);
 int				find_pos(t_stackdata *stack, int value);
-void		freestack(t_stackdata *stack);
-t_stackdata	normalise(t_stackdata *temp, int size, t_stackdata *a);
-int			moves(t_stackdata *stack, int value);
-void		temp_stack(t_stackdata *temp, int size);
-void		dtt(t_ps *ps);
-void		rotateb(t_ps *ps, int pos, int halfstack);
-void		secondhighest(t_ps *ps);
-void		frankenstein(t_ps *ps);
-void		partition(t_ps *ps);
+void			freestack(t_stackdata *stack);
+t_stackdata		normalise(t_stackdata *temp, int size, t_stackdata *a);
+int				moves(t_stackdata *stack, int value);
+void			temp_stack(t_stackdata *temp, int size);
+void			dtt(t_ps *ps);
+void			rotateb(t_ps *ps, int pos, int halfstack);
+void			secondhighest(t_ps *ps);
+void			frankenstein(t_ps *ps);
+void			partition(t_ps *ps);
+int				checkdoublerule(t_ps *ps);
+void			rotate_a_end(t_ps *ps);
+void			pushbacktoa(t_ps *ps);
+void			backtoa(t_ps *ps);
+void			rotate_b(t_ps *ps, int i);
 #endif
