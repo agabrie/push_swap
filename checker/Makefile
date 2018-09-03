@@ -6,7 +6,7 @@
 #    By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/15 08:15:41 by agabrie           #+#    #+#              #
-#    Updated: 2018/09/03 08:32:06 by agabrie          ###   ########.fr        #
+#    Updated: 2018/09/03 11:28:36 by agabrie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,3 +53,5 @@ re: allclean all ccompile
 ccompile:
 		@make re -C ../libft
 		@$(GCC) main.c $(NAME) $(LIBFT) -lmlx $(FRWORK) -o $(CNAME)
+
+check: ccompile libclean
