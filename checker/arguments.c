@@ -6,12 +6,11 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:45:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 16:40:43 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 08:08:53 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
 
 void	rule(t_stackdata *a, t_stackdata *b, char *line, int debug)
 {
@@ -79,10 +78,10 @@ void	initialise(t_ps *ps)
 	ps->b.size = 0;
 	ps->a.lst = NULL;
 	ps->b.lst = NULL;
-	//ps->size = (lst_size(&ps->a) + lst_size(&ps->b));
-	ft_nbrendl_fd(ps->size, 2);
+	ps->moves = 0;
+	ps->line = malloc(10);
+	*ps->line = malloc(10);
 }
-
 
 void	init(t_ps *ps, char **av, int ac)
 {

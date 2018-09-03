@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 21:15:14 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 08:08:20 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define MIN -2147483648
 # define MAX 2147483647
 # define VAR(NAME) #NAME
-# define MOVES() (col_str_fd(FYEL, "Moves : ", 2),ft_nbrendl_fd(moves, 2))
+# define MOVES() (col_str_fd(FYEL, "Moves : ", 2),ft_nbrendl_fd(ps->moves, 2))
 # define DEBUGIT(a,b,d,l) if(d){col_endl_fd(FYEL,l,2);printbothstacks(a,b);}
 # define FS() (freestack(a),freestack(b))
 # define MESSAGE(string, colour) (col_endl_fd(colour, string, 1),FS(),exit(0))
@@ -31,7 +31,6 @@
 typedef struct	s_stack
 {
 	int				value;
-	//int				size;
 	struct s_stack	*next;
 }				t_stack;
 
@@ -47,6 +46,8 @@ typedef struct	s_ps
 	t_stackdata	b;
 	int			size;
 	int			debug;
+	char		**line;
+	int			moves;
 }				t_ps;
 
 typedef struct	s_vis
@@ -56,7 +57,7 @@ typedef struct	s_vis
 	t_point ws;
 	t_point fr;
 	t_point bs;
-	int 	ls;
+	int		ls;
 	int		lv;
 	int		gsxt;
 	int		gsxa;
@@ -66,8 +67,8 @@ typedef struct	s_vis
 
 typedef struct	s_psv
 {
-	t_ps *ps;
-	t_vis *vis;
+	t_ps	*ps;
+	t_vis	*vis;
 }				t_psv;
 
 t_stack			*new_node(int value);
@@ -96,5 +97,5 @@ void			init(t_ps *ps, char **av, int ac);
 void			freestack(t_stackdata *stack);
 int				lst_size(t_stackdata *stack);
 int				longest_int(t_stack *stack);
-void    		draw_graph(t_vis *vis, t_ps *ps);
+void			draw_graph(t_vis *vis, t_ps *ps);
 #endif
