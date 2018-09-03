@@ -6,12 +6,12 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 08:14:12 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/02 13:48:30 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 09:58:32 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#define RULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);/*printbothstacks(&ps->a, &ps->b)*/;continue;}
+#define RULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);continue;}
 #define DRULE(str) {rule(&ps->a, &ps->b, str);ft_putendl(str);return(1);}
 #define BS (&ps->b)
 #define AS (&ps->a)
@@ -32,52 +32,29 @@
 
 void		dtt(t_ps *ps)
 {
-	while(!(check_sorted(AS) == 1))
+	while (!(check_sorted(AS) == 1))
 	{
-		if ((AB) && (BN->value > B->value) && (A->value > AN->value) && (A->value < ABV))
-		{
-			col_endl_fd(FRED, "first1", 2);
+		if ((AB) && (BN->value > B->value)
+		&& (A->value > AN->value) && (A->value < ABV))
 			RULE("ss");
-		}
-		if ((AB) && (BN->value < B->value) && (A->value < AN->value) && (AN->value > ABV) && (BBV > BN->value))
-		{
-			col_endl_fd(FRED, "first2", 2);
+		if ((AB) && (BN->value < B->value)
+		&& (A->value < AN->value) && (AN->value > ABV) && (BBV > BN->value))
 			RULE("ss");
-		}
 		if ((AB) && (B->value < BBV) && (A->value > ABV))
-		{
-			col_endl_fd(FRED, "first3", 2);
 			RULE("rr");
-		}
-		if ((AA) &&(A->value > AN->value) && (A->value < ABV))
-		{
-			col_endl_fd(FRED, "first4", 2);
+		if ((AA) && (A->value > AN->value) && (A->value < ABV))
 			RULE("sa");
-		}
 		if ((BB) && (BN->value > B->value))
-		{
-			col_endl_fd(FRED, "first5", 2);
 			RULE("sb");
-		}
-		if ((AA) &&(AN->value > A->value) && (AN->value > ABV))
-		{
-			col_endl_fd(FRED, "first6", 2);
+		if ((AA) && (AN->value > A->value) && (AN->value > ABV))
 			RULE("sa");
-		}
 		if ((BB) && (B->value < BBV))
-		{
-			col_endl_fd(FRED, "first7", 2);
 			RULE("rb");
-		}
-		if((AA) && (A->value > ABV))
-		{
-			col_endl_fd(FRED, "first8", 2);
+		if ((AA) && (A->value > ABV))
 			RULE("ra");
-		}
 		RULE("pb");
 	}
 }
-
 
 int	checkdoublerule(t_ps *ps)
 {
@@ -118,13 +95,12 @@ void	pushbacktoa(t_ps *ps)
 	while (B)
 	{
 		if (HV(&ps->a) < HV(&ps->b))
-			RULE("rb");	
+			RULE("rb");
 		if (A->value < HV(&ps->b))
 			RULE("ra");
 		if (check_largest(&ps->b) && B->value > LV(AS))
 			RULE("pa");
-		if (!B || ((ABV > HV(&ps->b))\
-		&& (ABV < A->value)))
+		if (!B || ((ABV > HV(&ps->b)) && (ABV < A->value)))
 			RULE("rra");
 		if (HV(&ps->b) != B->value)
 		{
@@ -134,65 +110,66 @@ void	pushbacktoa(t_ps *ps)
 					RULE("rb");
 			}
 			else
-			{
 				while (HV(&ps->b) != B->value)
 					RULE("rrb");
-			}
 		}
 		RULE("pa");
 	}
 	rotate_a_end(ps);
 }
 
-int	moves(t_stackdata *stack, int value)
+int		moves(t_stackdata *stack, int value)
 {
 	int pos;
-	pos = find_pos(stack, value);
 
+	pos = find_pos(stack, value);
 	return (pos > lst_size(stack) / 2 ? lst_size(stack) - pos : pos);
+}
+
+void	rotateb(t_ps *ps, int pos, int halfstack)
+{
+	int i;
+
+	i = 0;
+	while (!i)
+	{
+		i++;
+		if (pos > halfstack)
+		{
+			RULE("rrb");
+		}
+		else
+			RULE("rb");
+	}
 }
 
 void	secondhighest(t_ps *ps)
 {
 	int i;
+
 	i = 0;
 	while (i < 2)
 	{
 		while (i == 0 && B->value != NH(BS))
-		{
-			if(BHP(NH(BS)) > (lst_size(BS) / 2))
-			{
-				RULE("rrb");
-			}
-			else
-				RULE("rb");
-		}
-		if(i == 0 && B->value == NH(BS))
+			rotateb(ps, BHP(NH(BS)), (lst_size(BS) / 2));
+		if (i == 0 && B->value == NH(BS))
 		{
 			i++;
 			RULE("pa");
 		}
 		while (i == 1 && B->value != HV(BS))
-		{
-			if(BHP(HV(BS)) > (lst_size(BS) / 2))
-			{
-				RULE("rrb");
-			}
-			else 
-				RULE("rb");
-		}
-		if(i == 1 && B->value == HV(BS))
+			rotateb(ps, BHP(HV(BS)), (lst_size(BS) / 2));
+		if (i == 1 && B->value == HV(BS))
 		{
 			i++;
 			RULE("pa");
 		}
 	}
-	while(i == 2)
+	while (i == 2)
 	{
 		i++;
 		RULE("sa");
 	}
-	return ;
 }
 
 void	backtoa(t_ps *ps)
@@ -201,21 +178,9 @@ void	backtoa(t_ps *ps)
 	{
 		if ((BB) && moves(BS, HV(BS)) < moves(BS, NH(BS)))
 		{
-
 			while (B->value != HV(BS))
 			{
-				if(BHP(HV(BS)) > (lst_size(BS) / 2))
-				{
-					RULE("rrb");
-				}
-				else
-				{
-					/*if(BHP(HV(BS)) == 1 && BHP(NH(BS)) != 2)
-					{
-						RULE("sb");
-					}*/
-					RULE("rb");
-				}
+				rotateb(ps, BHP(HV(BS)), (lst_size(BS) / 2));
 			}
 			RULE("pa");
 		}
@@ -286,38 +251,6 @@ void	frankenstein(t_ps *ps)
 	}
 }
 
-int	closest_in_range(t_stackdata *stack, int size, int sect, int parts)
-{
-	int closest_top;
-	int closest_bottom;
-	t_stack *top;
-	int pos_top;
-	int pos_bot;
-
-	if(stack->lst)
-		top = stack->lst;
-	else
-		return (MIN);
-	while(top)
-	{
-		if (top->value < sect*(size/parts))
-		{
-			closest_top = top->value;
-			closest_bottom = top->value;
-			break;
-		}
-		top = top->next;
-	}
-	while(top)
-	{
-		if (top->value < sect*(size/parts))
-			closest_bottom = top->value;
-		top = top->next;
-	}
-	pos_top = moves(stack, closest_top);
-	pos_bot = moves(stack, closest_bottom);
-		return (pos_top < pos_bot ? pos_top : -pos_bot);
-}
 void		partition(t_ps *ps)
 {
 	int parts;
@@ -326,7 +259,7 @@ void		partition(t_ps *ps)
 
 	i = 0;
 	sect = 1;
-	parts = (lst_size(&ps->a) > 250 ? 10 : 4);
+	parts = (lst_size(&ps->a) > 250 ? 10 : 5);
 	while (sect <= parts)
 	{
 		while (i < RANGE())
@@ -337,14 +270,7 @@ void		partition(t_ps *ps)
 				RULE("pb");
 			}
 			else
-			{
-				/*if (closest_in_range(BS, (lst_size(AS)+lst_size(BS)), sect, parts) > 0)
-				{
-					RULE("rra");
-				}
-				else*/
-					RULE("ra");
-			}
+				RULE("ra");
 		}
 		sect++;
 	}
@@ -360,7 +286,7 @@ int			main(int ac, char **av)
 		if (lst_size(&ps.a) < 20)
 		{
 			frankenstein(&ps);
-			backtoa(&ps);
+			pushbacktoa(&ps);
 		}
 		else if (lst_size(&ps.a) < 50)
 		{

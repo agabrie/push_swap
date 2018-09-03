@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:20:44 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/03 08:08:18 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 08:42:41 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		check_dups(char **av)
 
 void		printbothstacks(t_stackdata *a, t_stackdata *b)
 {
+	ft_putendl_fd("", 2);
 	col_str_fd(FCYN, CAT("Stack ", CAT(VAR(a), " : ")), 2);
 	ft_nbrendl_fd(lst_size(a), 2);
 	printstack(a->lst);
@@ -64,6 +65,20 @@ void		check_sorted(t_stackdata *a, t_stackdata *b)
 		}
 	}
 	MESSAGE("OK", FGRN);
+}
+
+void		check(t_ps *ps)
+{
+	ft_memdel((void *)ps->line);
+	while (g_n_l(0, ps->line) > 0)
+	{
+		rule(&ps->a, &ps->b, *ps->line, ps->debug);
+		ft_memdel((void *)ps->line);
+		ps->moves++;
+	}
+	free(ps->line);
+	if (ps->debug)
+		MOVES();
 }
 
 int			longest_int(t_stack *stack)

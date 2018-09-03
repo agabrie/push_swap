@@ -6,7 +6,7 @@
 /*   By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:31:27 by agabrie           #+#    #+#             */
-/*   Updated: 2018/09/03 08:08:20 by agabrie          ###   ########.fr       */
+/*   Updated: 2018/09/03 08:27:44 by agabrie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,15 @@ void			freestack(t_stackdata *stack);
 int				lst_size(t_stackdata *stack);
 int				longest_int(t_stack *stack);
 void			draw_graph(t_vis *vis, t_ps *ps);
+void			check(t_ps *ps);
+t_stackdata		normalise(t_stackdata *temp, int size, t_stackdata *a);
+void			temp_stack(t_stackdata *temp, int size);
+void			visinit(t_ps *ps, char **av, int ac);
+int				vcheck(t_psv *psv);
+int				key_event(int key_code, t_psv *psv);
+void			setup_vis(t_vis *vis, t_ps *ps);
+void			draw_rectangle(t_vis *vis, t_point *start, t_point *end);
+void			drawsolidrect(t_point *start, t_point *end, t_vis *vis);
+void			drawbars(t_point *st, t_point *end, t_stackdata *s, t_vis *vis);
+void			draw_frames(t_vis *vis, t_ps *ps);
 #endif
