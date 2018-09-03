@@ -6,7 +6,7 @@
 #    By: agabrie <agabrie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/15 08:15:41 by agabrie           #+#    #+#              #
-#    Updated: 2018/09/03 11:27:33 by agabrie          ###   ########.fr        #
+#    Updated: 2018/09/03 11:36:29 by agabrie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,4 +52,4 @@ pcompile:
 		@make re -C ../libft
 		@$(GCC) main.c $(NAME) $(LIBFT) -o $(CNAME)
 
-ps: pscompile libclean
+ps: all pcompile libclean clean
